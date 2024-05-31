@@ -399,386 +399,12 @@
     },
     {
       "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 18
-      },
-      "id": 22,
-      "panels": [],
-      "title": "Composable ✔️",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "transparent",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 8,
-        "x": 0,
-        "y": 19
-      },
-      "id": 84,
-      "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 10)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "language": "markdown"
-        },
-        "editors": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": true
-      },
-      "pluginVersion": "5.0.0",
-      "targets": [
-        {
-          "body": "",
-          "cacheDurationSeconds": 60,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.[*].chain_id"
-            },
-            {
-              "jsonPath": "$.[*].channel_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].counter_chain_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].pending_packets",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].time_ago",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].client_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].seconds_ago",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "hermes_config_url",
-              "https://raw.githubusercontent.com/oraichain/cosmosia/dev/relay/composable_config.toml"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/get_last_ibc_client_update"
-        }
-      ],
-      "title": "Last Client Update [composable]",
-      "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-    },
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 8,
-        "x": 8,
-        "y": 19
-      },
-      "id": 60,
-      "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "height": 200,
-          "language": "markdown"
-        },
-        "editors": [],
-        "externalScripts": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": false
-      },
-      "pluginVersion": "5.0.0",
-      "targets": [
-        {
-          "cacheDurationSeconds": 60,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.[*].account"
-            },
-            {
-              "jsonPath": "$.[*].chain_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].denom",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].message",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].need_refill",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].refill_threshold",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].value",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "relayer_hub_name",
-              "composable"
-            ],
-            [
-              "process",
-              "main"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/get_wallet_balance"
-        }
-      ],
-      "title": "Wallet Balances [composable]",
-      "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-    },
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 14,
-        "w": 8,
-        "x": 16,
-        "y": 19
-      },
-      "id": 61,
-      "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "height": 200,
-          "language": "markdown"
-        },
-        "editors": [],
-        "externalScripts": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": false
-      },
-      "pluginVersion": "5.0.0",
-      "targets": [
-        {
-          "cacheDurationSeconds": 60,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.[*].account"
-            },
-            {
-              "jsonPath": "$.[*].chain_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].denom",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].message",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].need_refill",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].refill_threshold",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].value",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "relayer_hub_name",
-              "composable"
-            ],
-            [
-              "process",
-              "cron"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/get_wallet_balance"
-        }
-      ],
-      "title": "Wallet Balances - Cron [composable]",
-      "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-    },
-    {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 24,
-        "x": 0,
-        "y": 33
-      },
-      "id": 42,
-      "options": {
-        "dedupStrategy": "none",
-        "enableLogDetails": false,
-        "prettifyLogMessage": false,
-        "showCommonLabels": false,
-        "showLabels": false,
-        "showTime": false,
-        "sortOrder": "Descending",
-        "wrapLogMessage": true
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
-          "editorMode": "code",
-          "expr": "{job=\"hermes_composable\"} != `misbehaviour` != `websocket` != `packet messages are redundant` != `missing chain config`",
-          "queryType": "range",
-          "refId": "A"
-        }
-      ],
-      "title": "Log [composable]",
-      "transparent": true,
-      "type": "logs"
-    },
-    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 18
       },
       "id": 9,
       "panels": [],
@@ -809,20 +435,7 @@
         "h": 11,
         "w": 8,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 37
-        "y": 37
-=======
-        "y": 73
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 68
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 59
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 85,
       "options": {
@@ -928,20 +541,7 @@
         "h": 12,
         "w": 8,
         "x": 8,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 37
-        "y": 37
-=======
-        "y": 73
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 68
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 59
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 5,
       "options": {
@@ -1052,20 +652,7 @@
         "h": 12,
         "w": 8,
         "x": 16,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 37
-        "y": 37
-=======
-        "y": 73
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 68
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 59
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 55,
       "options": {
@@ -1157,24 +744,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 61
-        "y": 61
-=======
-        "y": 97
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 102
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 89
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 80
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 41,
       "options": {
@@ -1210,24 +780,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 67
-        "y": 67
-=======
-        "y": 103
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 108
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 95
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 86
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 9,
       "panels": [],
@@ -1262,24 +815,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 68
-        "y": 68
-=======
-        "y": 104
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 109
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 96
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 87
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 86,
       "options": {
@@ -1385,24 +921,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 68
-        "y": 68
-=======
-        "y": 104
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 109
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 96
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 87
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 56,
       "options": {
@@ -1513,24 +1032,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 68
-        "y": 68
-=======
-        "y": 104
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 109
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 96
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 87
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 57,
       "options": {
@@ -1622,24 +1124,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 82
-        "y": 82
-=======
-        "y": 118
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 123
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 106
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 97
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 43,
       "options": {
@@ -1669,30 +1154,12 @@
       "type": "logs"
     },
     {
->>>>>>> 97237ba (first add)
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 88
-        "y": 88
-=======
-        "y": 124
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 129
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 112
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 103
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 19,
       "panels": [],
@@ -1707,6 +1174,40 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 1,
+                "result": {
+                  "color": "#fade2a3d",
+                  "index": 0
+                },
+                "to": 4
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 5,
+                "result": {
+                  "color": "#f2495c7a",
+                  "index": 1
+                },
+                "to": 9999
+              },
+              "type": "range"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1717,48 +1218,84 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pending_packets"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "time_ago"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
+                      "result": {
+                        "color": "#f2495c7d",
+                        "index": 0
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
+                      "result": {
+                        "color": "#fade2a24",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 9,
+        "h": 17,
         "w": 8,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 89
-        "y": 89
-=======
-        "y": 125
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 130
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 113
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 104
->>>>>>> 40653e3 (relay: dashboard)
       },
-      "id": 87,
+      "id": 21,
       "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 10)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "language": "markdown"
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "editors": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": true
+        "showHeader": true
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "body": "",
@@ -1788,16 +1325,6 @@
             },
             {
               "jsonPath": "$.[*].time_ago",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].client_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].seconds_ago",
               "language": "jsonpath",
               "name": ""
             }
@@ -1846,24 +1373,7 @@
         "h": 9,
         "w": 8,
         "x": 8,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 89
-        "y": 89
-=======
-        "y": 125
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 130
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 113
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 104
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 63,
       "options": {
@@ -1974,24 +1484,7 @@
         "h": 9,
         "w": 8,
         "x": 16,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 89
-        "y": 89
-=======
-        "y": 125
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 130
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 113
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 104
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 62,
       "options": {
@@ -2083,24 +1576,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 106
-        "y": 106
-=======
-        "y": 142
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 147
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 129
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 120
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 45,
       "options": {
@@ -2136,7 +1612,6 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 112
         "y": 112
       },
       "id": 25,
@@ -2260,7 +1735,6 @@
         "w": 8,
         "x": 0,
         "y": 113
-        "y": 113
       },
       "id": 27,
       "options": {
@@ -2353,7 +1827,6 @@
         "h": 35,
         "w": 8,
         "x": 8,
-        "y": 113
         "y": 113
       },
       "id": 64,
@@ -2466,7 +1939,6 @@
         "w": 8,
         "x": 16,
         "y": 113
-        "y": 113
       },
       "id": 65,
       "options": {
@@ -2559,7 +2031,6 @@
         "w": 24,
         "x": 0,
         "y": 148
-        "y": 148
       },
       "id": 46,
       "options": {
@@ -2596,7 +2067,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 88
+        "y": 154
       },
       "id": 11,
       "panels": [
@@ -2645,7 +2116,6 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "transparent"
                     "color": "transparent"
                   }
                 ]
@@ -2713,7 +2183,7 @@
             "h": 6,
             "w": 8,
             "x": 0,
-            "y": 127
+            "y": 10
           },
           "id": 31,
           "options": {
@@ -2728,7 +2198,7 @@
             },
             "showHeader": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "10.4.2",
           "targets": [
             {
               "body": "",
@@ -2766,7 +2236,7 @@
               "params": [
                 [
                   "hermes_config_url",
-                  "https://raw.githubusercontent.com/oraichain/cosmosia/dev/relay/test_config.toml"
+                  "https://raw.githubusercontent.com/notional-labs/cosmosia/main/relay/test_config.toml"
                 ]
               ],
               "queryParams": "",
@@ -2791,7 +2261,6 @@
                 "steps": [
                   {
                     "color": "green"
-                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2806,7 +2275,7 @@
             "h": 6,
             "w": 8,
             "x": 8,
-            "y": 127
+            "y": 10
           },
           "id": 70,
           "options": {
@@ -2826,7 +2295,7 @@
             "styles": "",
             "wrap": false
           },
-          "pluginVersion": "5.0.0",
+          "pluginVersion": "4.5.0",
           "targets": [
             {
               "cacheDurationSeconds": 300,
@@ -2902,7 +2371,6 @@
                 "steps": [
                   {
                     "color": "green"
-                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2917,7 +2385,7 @@
             "h": 6,
             "w": 8,
             "x": 16,
-            "y": 127
+            "y": 10
           },
           "id": 71,
           "options": {
@@ -2937,7 +2405,7 @@
             "styles": "",
             "wrap": false
           },
-          "pluginVersion": "5.0.0",
+          "pluginVersion": "4.5.0",
           "targets": [
             {
               "cacheDurationSeconds": 300,
@@ -3009,7 +2477,7 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 133
+            "y": 16
           },
           "id": 48,
           "options": {
@@ -3048,28 +2516,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 155
-        "y": 155
-=======
-        "y": 113
->>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
-=======
-        "y": 149
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 154
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 136
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 127
->>>>>>> 40653e3 (relay: dashboard)
       },
       "id": 13,
       "panels": [],
@@ -3084,6 +2531,40 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 1,
+                "result": {
+                  "color": "#fade2a3d",
+                  "index": 0
+                },
+                "to": 4
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 5,
+                "result": {
+                  "color": "#f2495c7a",
+                  "index": 1
+                },
+                "to": 9999
+              },
+              "type": "range"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3094,52 +2575,84 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pending_packets"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "time_ago"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
+                      "result": {
+                        "color": "#f2495c80",
+                        "index": 0
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
+                      "result": {
+                        "color": "#fade2a26",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 17,
         "w": 8,
         "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "y": 156
-        "y": 156
-=======
-        "y": 114
->>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
-=======
-        "y": 150
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 155
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 137
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 128
->>>>>>> 40653e3 (relay: dashboard)
       },
-      "id": 88,
+      "id": 15,
       "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 10)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "language": "markdown"
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "editors": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": true
+        "showHeader": true
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "body": "",
@@ -3169,458 +2682,6 @@
             },
             {
               "jsonPath": "$.[*].time_ago",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].client_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].seconds_ago",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "hermes_config_url",
-              "https://raw.githubusercontent.com/oraichain/cosmosia/dev/relay/whitewhale_config.toml"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/get_last_ibc_client_update"
-        }
-      ],
-      "title": "Last Client Update [whitewhale]",
-      "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-    },
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 8,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "y": 156
-        "y": 156
-=======
-        "y": 114
->>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
-=======
-        "y": 150
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 155
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 137
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 128
->>>>>>> 40653e3 (relay: dashboard)
-      },
-      "id": 72,
-      "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "height": 200,
-          "language": "markdown"
-        },
-        "editors": [],
-        "externalScripts": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": false
-      },
-      "pluginVersion": "5.0.0",
-      "targets": [
-        {
-          "cacheDurationSeconds": 60,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.[*].account"
-            },
-            {
-              "jsonPath": "$.[*].chain_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].denom",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].message",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].need_refill",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].refill_threshold",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].value",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "relayer_hub_name",
-              "whitewhale"
-            ],
-            [
-              "process",
-              "main"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/get_wallet_balance"
-        }
-      ],
-      "title": "Wallet Balances [whitewhale]",
-      "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-    },
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 16,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "y": 156
-        "y": 156
-=======
-        "y": 114
->>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
-=======
-        "y": 150
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 155
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 137
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 128
->>>>>>> 40653e3 (relay: dashboard)
-      },
-      "id": 73,
-      "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "height": 200,
-          "language": "markdown"
-        },
-        "editors": [],
-        "externalScripts": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": false
-      },
-      "pluginVersion": "5.0.0",
-      "targets": [
-        {
-          "cacheDurationSeconds": 60,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.[*].account"
-            },
-            {
-              "jsonPath": "$.[*].chain_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].denom",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].message",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].need_refill",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].refill_threshold",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].value",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "relayer_hub_name",
-              "whitewhale"
-            ],
-            [
-              "process",
-              "cron"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/get_wallet_balance"
-        }
-      ],
-      "title": "Wallet Balances - Cron [whitewhale]",
-      "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-    },
-    {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 24,
-        "x": 0,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "y": 173
-        "y": 173
-=======
-        "y": 131
->>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
-=======
-        "y": 167
->>>>>>> 288ec1b (relay: update grafana)
-=======
-        "y": 172
->>>>>>> 2d6e7fc (relay: update dashboard...)
-=======
-        "y": 151
->>>>>>> 16288cd (relay: update dashboard...)
-=======
-        "y": 142
->>>>>>> 40653e3 (relay: dashboard)
-      },
-      "id": 49,
-      "options": {
-        "dedupStrategy": "none",
-        "enableLogDetails": false,
-        "prettifyLogMessage": false,
-        "showCommonLabels": false,
-        "showLabels": false,
-        "showTime": false,
-        "sortOrder": "Descending",
-        "wrapLogMessage": true
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
-          "editorMode": "code",
-          "expr": "{job=\"hermes_whitewhale\"} != `misbehaviour` != `websocket` != `packet messages are redundant` != `missing chain config`",
-          "queryType": "range",
-          "refId": "A"
-        }
-      ],
-      "title": "Log [whitewhale]",
-      "transparent": true,
-      "type": "logs"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 104
-      },
-      "id": 74,
-      "panels": [],
-      "title": "whitewhale-testnet",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 8,
-        "x": 0,
-        "y": 105
-      },
-      "id": 89,
-      "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 10)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "language": "markdown"
-        },
-        "editors": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": true
-      },
-      "pluginVersion": "5.0.0",
-      "targets": [
-        {
-          "body": "",
-          "cacheDurationSeconds": 60,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.[*].chain_id"
-            },
-            {
-              "jsonPath": "$.[*].channel_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].counter_chain_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].pending_packets",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].time_ago",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].client_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].seconds_ago",
               "language": "jsonpath",
               "name": ""
             }
@@ -3669,7 +2730,7 @@
         "h": 5,
         "w": 8,
         "x": 8,
-        "y": 105
+        "y": 156
       },
       "id": 76,
       "options": {
@@ -3780,7 +2841,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 105
+        "y": 156
       },
       "id": 77,
       "options": {
@@ -3872,7 +2933,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 110
+        "y": 173
       },
       "id": 78,
       "options": {
