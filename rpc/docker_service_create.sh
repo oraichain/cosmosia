@@ -165,5 +165,5 @@ docker service create \
   --env-file ../env.sh \
   archlinux:latest \
   /bin/bash -c \
-  "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/$git_branch/rpc/run.sh > ~/run.sh && \
+  "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/$git_branch/rpc/run.sh > ~/run.sh && \
   /bin/bash ~/run.sh $chain_name $rpc_service_name"

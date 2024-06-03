@@ -37,7 +37,7 @@ source $HOME/env.sh
 ########################################################################################################################
 # cron
 
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/load_balancer/caddy/generate_upstream.sh" > $HOME/generate_upstream.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/load_balancer/caddy/generate_upstream.sh" > $HOME/generate_upstream.sh
 
 cat <<'EOT' >  $HOME/cron_update_upstream.sh
 source $HOME/env.sh
@@ -75,8 +75,8 @@ sleep 5
 ########################################################################################################################
 # cgi-script api
 pacman -S --noconfirm nginx spawn-fcgi fcgiwrap
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/load_balancer/nginx.conf" > /etc/nginx/nginx.conf
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/load_balancer/api_upstream.sh" > /usr/share/nginx/html/api_upstream.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/load_balancer/nginx.conf" > /etc/nginx/nginx.conf
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/load_balancer/api_upstream.sh" > /usr/share/nginx/html/api_upstream.sh
 chmod +x /usr/share/nginx/html/api_upstream.sh
 spawn-fcgi -s /var/run/fcgiwrap.socket -M 766 /usr/sbin/fcgiwrap
 /usr/sbin/nginx

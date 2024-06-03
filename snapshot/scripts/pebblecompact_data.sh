@@ -2,7 +2,7 @@
 # eg., ./pebblecompact_data.sh $HOME/.bcna/data
 #
 # warning: that this tool relaces the data.
-# note: requires to install https://github.com/notional-labs/pebblecompact
+# note: requires to install https://github.com/oraichain/pebblecompact
 
 data_dir="$1"
 

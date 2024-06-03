@@ -234,6 +234,6 @@ case $OPTION in
     echo "Incorrect option."
     echo "Only support [ 1: rpc, 2: snapshot ]"
     echo "Eg: ./update_config 1"
-    echo "Eg: curl -Ls -o- https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/scripts/update_config.sh | bash -s -- 1"
+    echo "Eg: curl -Ls -o- https://raw.githubusercontent.com/oraichain/cosmosia/dev/rpc/scripts/update_config.sh | bash -s -- 1"
     ;;
 esac

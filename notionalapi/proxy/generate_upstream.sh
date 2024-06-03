@@ -65,7 +65,7 @@ done
 
 sleep 1
 ########################################################################################################################
-SERVICES_SUBNODE=$(curl -s "https://raw.githubusercontent.com/notional-labs/cosmosia/main/data/subnode_registry.ini" |grep -E "\[.*\]" | sed 's/^\[\(.*\)\]$/\1/')
+SERVICES_SUBNODE=$(curl -s "https://raw.githubusercontent.com/oraichain/cosmosia/dev/data/subnode_registry.ini" |grep -E "\[.*\]" | sed 's/^\[\(.*\)\]$/\1/')
 
 for service_name in $SERVICES_SUBNODE; do
   gw_ip=$(dig +short "tasks.napigw_sub_$service_name")

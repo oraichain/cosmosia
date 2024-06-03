@@ -17,9 +17,9 @@ Command executed on a docker swarm manager node. In this example, we will add `c
    > - `snapshot_prune`: prune strategy. Default `cosmos-pruner`
    > - `network`: 
 
-   When finished adding, create a commit and push to notional-labs/cosmosia.
+   When finished adding, create a commit and push to oraichain/cosmosia.
 
-2. Prepare 1st snapshot and copy to a `snapshot_storage_node` included in [`chain_registry.ini`](https://github.com/notional-labs/cosmosia/blob/main/data/chain_registry.ini#L8). 
+2. Prepare 1st snapshot and copy to a `snapshot_storage_node` included in [`chain_registry.ini`](https://github.com/oraichain/cosmosia/blob/main/data/chain_registry.ini#L8). 
    
    The snapshot data for each chain is located at `/mnt/data/<chain-name>`. Normally, each snapshot should have 4 files:
    
@@ -65,11 +65,11 @@ Command executed on a docker swarm manager node. In this example, we will add `c
       killall crond
       ```
    - Download Golevel snapshot, and extract to data folder
-   - Convert to PebbleDB with [Cosmosia convert script](https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/scripts/level2pebble_data.sh):
+   - Convert to PebbleDB with [Cosmosia convert script](https://raw.githubusercontent.com/oraichain/cosmosia/dev/snapshot/scripts/level2pebble_data.sh):
       - Install `level2pebble`:
          ```bash
-         cd ~ && wget https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/scripts/level2pebble_data.sh
-         git clone https://github.com/notional-labs/level2pebble
+         cd ~ && wget https://raw.githubusercontent.com/oraichain/cosmosia/dev/snapshot/scripts/level2pebble_data.sh
+         git clone https://github.com/oraichain/level2pebble
          cd level2pebble && make install
          ```
       - Convert Golevel data to PebbleDB:

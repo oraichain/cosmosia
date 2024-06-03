@@ -36,9 +36,9 @@ pacman -S --noconfirm grafana
 mkdir -p /var/lib/grafana/conf/provisioning/datasources
 mkdir -p /var/lib/grafana/conf/provisioning/dashboards
 mkdir -p /var/lib/grafana/dashboards
-curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/monitor/grafana/datasource.yaml > /var/lib/grafana/conf/provisioning/datasources/datasource.yaml
-curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/monitor/grafana/dashboard.yaml > /var/lib/grafana/conf/provisioning/dashboards/dashboard.yaml
-curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/monitor/grafana/MyDashboard.json > /var/lib/grafana/dashboards/MyDashboard.json
+curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/monitor/grafana/datasource.yaml > /var/lib/grafana/conf/provisioning/datasources/datasource.yaml
+curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/monitor/grafana/dashboard.yaml > /var/lib/grafana/conf/provisioning/dashboards/dashboard.yaml
+curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/monitor/grafana/MyDashboard.json > /var/lib/grafana/dashboards/MyDashboard.json
 
 # change admin password
 default_password="$(curl -s "http://tasks.web_config/config/GRAFANA_PASSWORD")"

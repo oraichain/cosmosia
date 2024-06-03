@@ -73,7 +73,7 @@ systemctl restart docker
 ```console
 docker network create -d overlay --attachable --subnet=10.1.0.0/16 --gateway=10.1.0.1 bignet
 
-# https://github.com/notional-labs/cosmosia/issues/134
+# https://github.com/oraichain/cosmosia/issues/134
 
 # cosmosia overlay network used for loadbalance and proxy
 docker network create -d overlay --attachable cosmosia
@@ -101,7 +101,7 @@ docker network create -d overlay --attachable net8
 - clone repos to a manager node to $HOME:
 ```console
 cd $HOME
-git clone https://github.com/notional-labs/cosmosia
+git clone https://github.com/oraichain/cosmosia
 ```
 
 ### LVM

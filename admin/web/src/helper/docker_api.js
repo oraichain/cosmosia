@@ -9,7 +9,7 @@
  * curl -sG -XGET --unix-socket /var/run/docker.sock http://localhost/services --data-urlencode 'filters={"label":["cosmosia.service=lb"]}' |jq -r '.[].Spec.Name'
  *
  *
- * however, its not able to use unix-socket with node-fetch, so we'll use `web_config` instead (`https://github.com/notional-labs/cosmosia/blob/main/web_config/run.sh#L71`)
+ * however, its not able to use unix-socket with node-fetch, so we'll use `web_config` instead (`https://github.com/oraichain/cosmosia/blob/main/web_config/run.sh#L71`)
  * curl -sG -XGET http://tasks.web_config:2375/services --data-urlencode 'filters={"label":["cosmosia.service=rpc"]}' |jq -r '.[].Spec.Name'
  */
 
@@ -114,7 +114,7 @@ export const listLoadBalancers = async () => {
               "Args": [
                 "/bin/bash",
                 "-c",
-                "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/load_balancer/haproxy/run.sh > ~/run.sh &&    /bin/bash ~/run.sh rpc_whitewhale-testnet_0"
+                "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/load_balancer/haproxy/run.sh > ~/run.sh &&    /bin/bash ~/run.sh rpc_whitewhale-testnet_0"
               ],
               "Init": false,
               "DNSConfig": {},
@@ -179,7 +179,7 @@ export const listLoadBalancers = async () => {
               "Args": [
                 "/bin/bash",
                 "-c",
-                "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/load_balancer/run.sh > ~/run.sh &&    /bin/bash ~/run.sh rpc_quasar_1"
+                "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/load_balancer/run.sh > ~/run.sh &&    /bin/bash ~/run.sh rpc_quasar_1"
               ],
               "Init": false,
               "DNSConfig": {},
@@ -231,7 +231,7 @@ export const listLoadBalancers = async () => {
               "Args": [
                 "/bin/bash",
                 "-c",
-                "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/load_balancer/run.sh > ~/run.sh &&    /bin/bash ~/run.sh rpc_quasar_1"
+                "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/load_balancer/run.sh > ~/run.sh &&    /bin/bash ~/run.sh rpc_quasar_1"
               ],
               "Init": false,
               "DNSConfig": {},
@@ -320,10 +320,10 @@ export const listSnapshots = async () => {
               "Args": [
                 "/bin/bash",
                 "-c",
-                "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/snapshot_run.sh > ~/snapshot_run.sh &&   /bin/bash ~/snapshot_run.sh dig"
+                "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/snapshot/snapshot_run.sh > ~/snapshot_run.sh &&   /bin/bash ~/snapshot_run.sh dig"
               ],
               "Env": [
-                "CHAIN_REGISTRY_INI_URL=https://raw.githubusercontent.com/notional-labs/cosmosia/main/data/chain_registry.ini"
+                "CHAIN_REGISTRY_INI_URL=https://raw.githubusercontent.com/oraichain/cosmosia/dev/data/chain_registry.ini"
               ],
               "Init": false,
               "DNSConfig": {},
@@ -384,7 +384,7 @@ export const listSnapshots = async () => {
               "Args": [
                 "/bin/bash",
                 "-c",
-                "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/snapshot_run.sh > ~/snapshot_run.sh &&   /bin/bash ~/snapshot_run.sh cerberus"
+                "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/snapshot/snapshot_run.sh > ~/snapshot_run.sh &&   /bin/bash ~/snapshot_run.sh cerberus"
               ],
               "Init": false,
               "Mounts": [
@@ -611,7 +611,7 @@ export const listSubnodes = async () => {
               "Args": [
                 "/bin/bash",
                 "-c",
-                "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/subnode/run.sh > ~/run.sh &&    /bin/bash ~/run.sh osmosis"
+                "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/subnode/run.sh > ~/run.sh &&    /bin/bash ~/run.sh osmosis"
               ],
               "Init": false,
               "DNSConfig": {},
@@ -676,7 +676,7 @@ export const listSubnodes = async () => {
               "Args": [
                 "/bin/bash",
                 "-c",
-                "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/subnode/run.sh > ~/run.sh &&    /bin/bash ~/run.sh cosmoshub"
+                "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/subnode/run.sh > ~/run.sh &&    /bin/bash ~/run.sh cosmoshub"
               ],
               "Init": false,
               "DNSConfig": {},

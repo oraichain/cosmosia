@@ -12,6 +12,6 @@ else
   git checkout "$p_version"
 fi
 
-go mod edit -replace github.com/cosmos/cosmos-db=github.com/notional-labs/cosmos-db@v1.0.0
+go mod edit -replace github.com/cosmos/cosmos-db=github.com/oraichain/cosmos-db@v1.0.0
 go mod tidy
 go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...

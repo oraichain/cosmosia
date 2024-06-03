@@ -13,6 +13,6 @@ docker service create \
   --restart-condition none \
   archlinux:latest \
   /bin/bash -c \
-  "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/bastion/run.sh > ~/run.sh && \
+  "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/bastion/run.sh > ~/run.sh && \
    /bin/bash ~/run.sh"
 

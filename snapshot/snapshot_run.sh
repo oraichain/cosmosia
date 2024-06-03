@@ -160,12 +160,12 @@ killall dbus-daemon
 $HOME/go/bin/$daemon_name start $start_flags 1>&2
 EOT
 
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/snapshot_restore.sh" > $HOME/snapshot_restore.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/snapshot/snapshot_restore.sh" > $HOME/snapshot_restore.sh
 
 ########################################################################################################################
 echo "install cosmos-pruner"
 cd $HOME
-git clone --single-branch --branch main https://github.com/notional-labs/cosmprund
+git clone --single-branch --branch main https://github.com/oraichain/cosmprund
 cd cosmprund
 make install
 
@@ -213,7 +213,7 @@ supervisord
 ########################################################################################################################
 # cron
 
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/snapshot_cronjob.sh" > $HOME/snapshot_cronjob.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/snapshot/snapshot_cronjob.sh" > $HOME/snapshot_cronjob.sh
 
 # pick a random hour and minute to take snapshot
 snapshot_time_hour=$(( ${RANDOM} % 24 ))

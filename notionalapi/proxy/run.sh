@@ -14,12 +14,12 @@ wget "http://tasks.web_config/config/notionalapi.net_privkey.pem" -O /etc/nginx/
 ########################################################################################################################
 # nginx
 
-curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/notionalapi/proxy/nginx.conf > /etc/nginx/nginx.conf
+curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/notionalapi/proxy/nginx.conf > /etc/nginx/nginx.conf
 
 ########################################################################################################################
 
 # generate config for the first time
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/notionalapi/proxy/generate_upstream.sh" > $HOME/generate_upstream.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/notionalapi/proxy/generate_upstream.sh" > $HOME/generate_upstream.sh
 sleep 1
 source $HOME/generate_upstream.sh
 echo "UPSTREAM_CONFIG_FILE=$UPSTREAM_CONFIG_FILE"

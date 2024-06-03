@@ -71,9 +71,9 @@ How to upgrade a chain including RPC service and snapshot service.
    ![upgrade_chain_6.png](upgrade_chain_6.png)
 
 
-3. Follow steps in [Workaround when upgrading a chain running PebbleDB](https://notional-labs.github.io/cosmosia/#/pebbledb?id=workaround-when-upgrading-a-chain-running-pebbledb) note to upgrade the chain.
+3. Follow steps in [Workaround when upgrading a chain running PebbleDB](https://oraichain.github.io/cosmosia/#/pebbledb?id=workaround-when-upgrading-a-chain-running-pebbledb) note to upgrade the chain.
    
-   Some chains require build differently, see more at [Special chains](https://notional-labs.github.io/cosmosia/#/snapshot_usage?id=special-chains)
+   Some chains require build differently, see more at [Special chains](https://oraichain.github.io/cosmosia/#/snapshot_usage?id=special-chains)
    
    
 ### Upgrade Snapshot
@@ -108,7 +108,7 @@ How to upgrade a chain including RPC service and snapshot service.
     ![upgrade_chain_9.png](upgrade_chain_9.png)
 
 #### B. Do the upgrade
-The process is similar to [Upgrade RPCs / Do the upgrade](https://notional-labs.github.io/cosmosia/#/admin_upgrade_a_chain?id=b-do-the-upgrade)
+The process is similar to [Upgrade RPCs / Do the upgrade](https://oraichain.github.io/cosmosia/#/admin_upgrade_a_chain?id=b-do-the-upgrade)
 
 **Note**: There is a cron job to take snapshot daily, disable it while doing the upgrade to void cronjob running during the upgrading process then remember to enable it back when done.
 

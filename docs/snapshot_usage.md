@@ -15,11 +15,11 @@ wget -O - "$URL" |tar -xzf -
 
 ### Build with PebbleDB backend
 ```console
-go mod edit -replace github.com/tendermint/tm-db=github.com/notional-labs/tm-db@pebble
+go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
 go mod tidy
 
 # for cometbft
-go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
+go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
 go mod tidy
 
 go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...

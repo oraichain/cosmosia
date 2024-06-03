@@ -43,7 +43,7 @@ docker network create -d overlay --attachable net8
 
 
 cd ~/
-git clone https://github.com/notional-labs/cosmosia
+git clone https://github.com/oraichain/cosmosia
 cd ~/cosmosia
 cp env.sample.sh env.sh
 ```

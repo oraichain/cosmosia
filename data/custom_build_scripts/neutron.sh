@@ -12,9 +12,9 @@ else
   git checkout "$p_version"
 fi
 
-go mod edit -replace github.com/tendermint/tm-db=github.com/notional-labs/tm-db@pebble
+go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
 go mod tidy
-go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
+go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
 go mod tidy
 go mod edit -replace github.com/cockroachdb/pebble=github.com/cockroachdb/pebble@v1.0.0
 go mod tidy

@@ -13,9 +13,9 @@ else
 fi
 
 
-go mod edit -replace github.com/tendermint/tm-db=github.com/notional-labs/tm-db@pebble
+go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
 go mod tidy
-go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
+go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
 go mod tidy
 
 axelard_version=${version##*v}

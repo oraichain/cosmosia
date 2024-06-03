@@ -42,7 +42,7 @@ if [[ -z $build_script ]]; then
       cd protocol
     fi
 
-    go mod edit -replace github.com/tendermint/tm-db=github.com/notional-labs/tm-db@pebble
+    go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
 
     if [ $( echo "${chain_name}" |grep -cE "^(cyber|provenance|furya)$" ) -ne 0 ]; then
       go mod tidy -compat=1.17
@@ -50,7 +50,7 @@ if [[ -z $build_script ]]; then
       go mod tidy
     fi
 
-    go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
+    go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
     if [ $( echo "${chain_name}" |grep -cE "^(cyber|provenance|furya)$" ) -ne 0 ]; then
       go mod tidy -compat=1.17
     else
@@ -170,7 +170,7 @@ if [[ -z $skip_snapshot_restore ]]; then
   fi
   sed -i -e "s/^snapshot-interval *=.*/snapshot-interval = 0/" $node_home/config/app.toml
 
-  # https://github.com/notional-labs/cosmosia/issues/24
+  # https://github.com/oraichain/cosmosia/issues/24
   [ "$chain_name" != "kava" ] && sed -i -e "s/^swagger *=.*/swagger = true/" $node_home/config/app.toml
 
   sed -i '/^\[rpc]/,/^\[/{s/^laddr[[:space:]]*=.*/laddr = "tcp:\/\/0.0.0.0:26657"/}' $node_home/config/config.toml

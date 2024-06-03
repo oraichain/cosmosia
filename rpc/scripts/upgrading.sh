@@ -104,7 +104,7 @@ buid_chain () {
       cd $HOME/agoric-sdk/golang/cosmos
     fi
 
-    go mod edit -replace github.com/tendermint/tm-db=github.com/notional-labs/tm-db@pebble
+    go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
 
     if [ $( echo "${chain_name}" |grep -cE "^(cyber|provenance|furya)$" ) -ne 0 ]; then
       go mod tidy -compat=1.17
@@ -112,7 +112,7 @@ buid_chain () {
       go mod tidy
     fi
 
-    go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
+    go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
     if [ $( echo "${chain_name}" |grep -cE "^(cyber|provenance|furya)$" ) -ne 0 ]; then
       go mod tidy -compat=1.17
     else

@@ -25,13 +25,13 @@ echo "##########################################################################
 echo "install subnode"
 
 cd $HOME
-git clone --single-branch --branch main https://github.com/notional-labs/subnode
+git clone --single-branch --branch main https://github.com/oraichain/subnode
 cd subnode
 make install
 
 
 # get config
-curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/subnode/${subnode_name}_subnode.yaml > ~/subnode.yaml
+curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/subnode/${subnode_name}_subnode.yaml > ~/subnode.yaml
 
 # run subnode with screen to avoid log to docker
 cd $HOME

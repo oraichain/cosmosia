@@ -16,7 +16,7 @@ wget "http://tasks.web_config/config/privkey.pem" -O /etc/nginx/privkey.pem
 ########################################################################################################################
 # nginx
 
-curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/proxy/internal/nginx.conf > $HOME/nginx.conf.template
+curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/proxy/internal/nginx.conf > $HOME/nginx.conf.template
 cat $HOME/nginx.conf.template |envsubst '$USE_DOMAIN_NAME' > /etc/nginx/nginx.conf
 
 # get tokens
@@ -261,7 +261,7 @@ done
 ########################################################################################################################
 
 # generate config for the first time
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/proxy/legacy/generate_upstream.sh" > $HOME/generate_upstream.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/proxy/legacy/generate_upstream.sh" > $HOME/generate_upstream.sh
 sleep 1
 source $HOME/generate_upstream.sh
 echo "UPSTREAM_CONFIG_FILE=$UPSTREAM_CONFIG_FILE"

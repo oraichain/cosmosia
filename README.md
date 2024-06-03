@@ -19,7 +19,7 @@ Cosmosia has been used in production for Notional for more than one year. Its al
 - Opensource 100%.
 
 ### Docs
-See [Docs](https://notional-labs.github.io/cosmosia/#/)
+See [Docs](https://oraichain.github.io/cosmosia/#/)
 
 
 ### Note

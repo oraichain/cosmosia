@@ -12,9 +12,9 @@ loop_forever () {
 ########################################################################################################################
 # nginx
 
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/agent/nginx.conf" > /etc/nginx/nginx.conf
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/agent/host_resource_usage.sh" > /usr/share/nginx/html/host_resource_usage.sh
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/agent/containers_resource_usage.sh" > /usr/share/nginx/html/containers_resource_usage.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/agent/nginx.conf" > /etc/nginx/nginx.conf
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/agent/host_resource_usage.sh" > /usr/share/nginx/html/host_resource_usage.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/agent/containers_resource_usage.sh" > /usr/share/nginx/html/containers_resource_usage.sh
 
 chmod +x /usr/share/nginx/html/host_resource_usage.sh
 chmod +x /usr/share/nginx/html/containers_resource_usage.sh

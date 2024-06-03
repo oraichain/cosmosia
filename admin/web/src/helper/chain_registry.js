@@ -29,7 +29,7 @@ export const getChainList = async () => {
 
 ////////////////////////////////////////////////////////////////////////////////
 // subnode_registry
-// https://github.com/notional-labs/cosmosia/blob/main/data/subnode_registry.ini
+// https://github.com/oraichain/cosmosia/blob/main/data/subnode_registry.ini
 
 export const getSubnodeList = async () => {
   // need update to make it dynamic, use static for now

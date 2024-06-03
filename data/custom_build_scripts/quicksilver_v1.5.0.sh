@@ -12,6 +12,6 @@ else
   git checkout "$p_version"
 fi
 
-go mod edit -replace github.com/tendermint/tm-db=github.com/notional-labs/tm-db@v0.11.0
+go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@v0.11.0
 go mod tidy
 go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...

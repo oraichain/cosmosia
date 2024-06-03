@@ -46,7 +46,7 @@ docker node ls -f node.label=cosmosia.rpc.osmosis-archive=true
 ---
 ## Load-Balancer Service Placement
 
-https://github.com/notional-labs/cosmosia/issues/255
+https://github.com/oraichain/cosmosia/issues/255
 
 
 #### Docker commands

@@ -11,7 +11,7 @@ pacman -Sy --noconfirm nginx screen
 echo "#################################################################################################################"
 echo "nginx..."
 
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/proxy/validator1/nginx.conf" > /etc/nginx/nginx.conf
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/proxy/validator1/nginx.conf" > /etc/nginx/nginx.conf
 
 
 # run nginx with screen to avoid log to docker

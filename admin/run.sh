@@ -12,7 +12,7 @@ nvm install v18.14.0
 yarn set version v18.14.0
 
 cd $HOME
-git clone --single-branch --branch main https://github.com/notional-labs/cosmosia
+git clone --single-branch --branch main https://github.com/oraichain/cosmosia
 
 # create env.sh for cosmosia
 cat <<EOT >> $HOME/cosmosia/env.sh

@@ -123,5 +123,5 @@ docker service create \
   --env-file ../env.sh \
   archlinux:latest \
   /bin/bash -c \
-  "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/snapshot_run.sh > ~/snapshot_run.sh && \
+  "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/snapshot/snapshot_run.sh > ~/snapshot_run.sh && \
   /bin/bash ~/snapshot_run.sh $chain_name"

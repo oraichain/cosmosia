@@ -68,7 +68,7 @@ docker service create \
   --restart-condition none \
   archlinux:latest \
   /bin/bash -c \
-  "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/$git_branch/load_balancer/${lb_type}/run.sh > ~/run.sh && \
+  "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/$git_branch/load_balancer/${lb_type}/run.sh > ~/run.sh && \
    /bin/bash ~/run.sh $chain_name $scale"
 
 

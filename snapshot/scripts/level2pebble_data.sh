@@ -2,7 +2,7 @@
 # eg., ./level2pebble_data.sh $HOME/.bcna/data
 #
 # warning: that this tool relaces the data.
-# note: requires to install https://github.com/notional-labs/level2pebble
+# note: requires to install https://github.com/oraichain/level2pebble
 
 data_dir="$1"
 

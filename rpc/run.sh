@@ -124,7 +124,7 @@ mkdir -p $GOBIN
 
 ########################################################################################################################
 # restore snapshot
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/snapshot/snapshot_restore.sh" > $HOME/snapshot_restore.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/snapshot/snapshot_restore.sh" > $HOME/snapshot_restore.sh
 cd $HOME
 
 if [ -z "$(ls -A $node_home)" ]; then
@@ -144,7 +144,7 @@ fi
 
 # enable statesync for pruned rpc node only
 if [ $( echo "${chain_name}" | grep -cE "archive" ) -eq 0 ]; then
-  # except these chains (https://github.com/notional-labs/cosmosia/issues/297)
+  # except these chains (https://github.com/oraichain/cosmosia/issues/297)
   if [ $( echo "${chain_name}" |grep -cE "^(irisnet)$" ) -ne 0 ]; then
     sed -i -e "s/^snapshot-interval *=.*/snapshot-interval = 14400/" $node_home/config/app.toml
     sed -i -e "s/^snapshot-keep-recent *=.*/snapshot-keep-recent = 2/" $node_home/config/app.toml
@@ -187,9 +187,9 @@ supervisord
 
 echo "#################################################################################################################"
 echo "start nginx..."
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/nginx.conf" > /etc/nginx/nginx.conf
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/healthcheck.sh" > /usr/share/nginx/html/healthcheck.sh
-curl -Ls "https://raw.githubusercontent.com/notional-labs/cosmosia/main/rpc/data_size.sh" > /usr/share/nginx/html/data_size.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/rpc/nginx.conf" > /etc/nginx/nginx.conf
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/rpc/healthcheck.sh" > /usr/share/nginx/html/healthcheck.sh
+curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/rpc/data_size.sh" > /usr/share/nginx/html/data_size.sh
 chmod +x /usr/share/nginx/html/healthcheck.sh
 chmod +x /usr/share/nginx/html/data_size.sh
 spawn-fcgi -s /var/run/fcgiwrap.socket -M 766 /usr/sbin/fcgiwrap

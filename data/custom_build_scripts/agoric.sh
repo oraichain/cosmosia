@@ -6,9 +6,9 @@ if [[ -z $upgrading ]]; then
   # cd $repo_name
   cd $HOME/agoric-sdk/golang/cosmos
 
-  go mod edit -replace github.com/tendermint/tm-db=github.com/notional-labs/tm-db@pebble
+  go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
   go mod tidy
-  go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
+  go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
   go mod tidy
 
   # install nvm
@@ -51,9 +51,9 @@ else
 
 
   cd $HOME/agoric-sdk/golang/cosmos
-  go mod edit -replace github.com/tendermint/tm-db=github.com/notional-labs/tm-db@pebble
+  go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
   go mod tidy
-  go mod edit -replace github.com/cometbft/cometbft-db=github.com/notional-labs/cometbft-db@pebble
+  go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
   go mod tidy
 
   cd $HOME/agoric-sdk

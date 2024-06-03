@@ -15,4 +15,4 @@ docker service create \
   --restart-condition none \
   archlinux:latest \
   /bin/bash -c \
-  "curl -s https://raw.githubusercontent.com/notional-labs/cosmosia/main/notionalapi/apicount_pruner/run.sh > ~/run.sh && /bin/bash ~/run.sh"
+  "curl -s https://raw.githubusercontent.com/oraichain/cosmosia/dev/notionalapi/apicount_pruner/run.sh > ~/run.sh && /bin/bash ~/run.sh"
