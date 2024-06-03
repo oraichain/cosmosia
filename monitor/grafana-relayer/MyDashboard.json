@@ -1204,6 +1204,7 @@
       "type": "logs"
     },
     {
+>>>>>>> 97237ba (first add)
       "collapsed": false,
       "gridPos": {
         "h": 1,
@@ -1228,9 +1229,9 @@
         "y": 86
 >>>>>>> 40653e3 (relay: dashboard)
       },
-      "id": 10,
+      "id": 9,
       "panels": [],
-      "title": "Furya ✔️",
+      "title": "Coreum ✔️",
       "type": "row"
     },
     {
@@ -1245,8 +1246,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent",
+                "color": "green",
                 "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -3542,8 +3547,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "transparent",
+                "color": "green",
                 "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
