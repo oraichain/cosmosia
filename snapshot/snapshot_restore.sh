@@ -59,14 +59,14 @@ if [[ -z $build_script ]]; then
 
     # go work use
 
-    if [ $( echo "${chain_name}" |grep -cE "^(emoney)$" ) -ne 0 ]; then
-      sed -i 's/db.NewGoLevelDB/sdk.NewLevelDB/g' app.go
-      go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb -X github.com/e-money/cosmos-sdk/types.DBBackend=pebbledb -X github.com/tendermint/tm-db.ForceSync=1" ./...
-    elif [ $( echo "${chain_name}" |grep -cE "^(starname|sifchain)$" ) -ne 0 ]; then
-      go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./cmd/$daemon_name
-    else
-      go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...
-    fi
+    # if [ $( echo "${chain_name}" |grep -cE "^(emoney)$" ) -ne 0 ]; then
+    #   sed -i 's/db.NewGoLevelDB/sdk.NewLevelDB/g' app.go
+    #   go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb -X github.com/e-money/cosmos-sdk/types.DBBackend=pebbledb -X github.com/tendermint/tm-db.ForceSync=1" ./...
+    # elif [ $( echo "${chain_name}" |grep -cE "^(starname|sifchain)$" ) -ne 0 ]; then
+    #   go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./cmd/$daemon_name
+    # else
+    #   go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...
+    # fi
 
     ## copy binary from gvm to $HOME/go/bin/
     #if [ "$use_gvm" = true ]; then

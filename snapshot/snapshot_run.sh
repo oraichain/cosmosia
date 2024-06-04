@@ -105,7 +105,7 @@ fi
 
 cd $HOME
 pacman -Syu --noconfirm
-pacman -Sy --noconfirm git base-devel wget pigz jq dnsutils inetutils python python-pip cronie spawn-fcgi fcgiwrap openssh
+pacman -Sy --noconfirm git base-devel wget pigz jq dnsutils inetutils python python-pip cronie spawn-fcgi fcgiwrap openssh vim net-tools
 pacman -Syu --noconfirm
 
 echo "#################################################################################################################"
