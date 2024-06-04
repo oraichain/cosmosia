@@ -24,6 +24,7 @@ fi
 
 echo "SNAPSHOT_BASE_URL=$SNAPSHOT_BASE_URL"
 
+echo "build_script: $build_script"
 if [[ -z $build_script ]]; then
   echo "curren path: $PWD"
 
