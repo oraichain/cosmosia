@@ -29,9 +29,9 @@
         "x": 0,
         "y": 0
       },
-      "id": 79,
+      "id": 22,
       "panels": [],
-      "title": "quicksilver",
+      "title": "Composable ✔️",
       "type": "row"
     },
     {
@@ -42,6 +42,40 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 1,
+                "result": {
+                  "color": "#fade2a3d",
+                  "index": 0
+                },
+                "to": 4
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 5,
+                "result": {
+                  "color": "#f2495c7a",
+                  "index": 1
+                },
+                "to": 9999
+              },
+              "type": "range"
+            }
+          ],
           "color": {
             "mode": "thresholds"
           },
@@ -142,30 +176,83 @@
             ]
           }
         ]
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pending_packets"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "time_ago"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
+                      "result": {
+                        "color": "#f2495c87",
+                        "index": 0
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
+                      "result": {
+                        "color": "#fade2a30",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 11,
+        "h": 29,
         "w": 8,
         "x": 0,
         "y": 1
       },
-      "id": 80,
+      "id": 24,
       "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "language": "markdown"
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "editors": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": true
+        "showHeader": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "body": "",
@@ -197,14 +284,457 @@
               "jsonPath": "$.[*].time_ago",
               "language": "jsonpath",
               "name": ""
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "hermes_config_url",
+              "https://raw.githubusercontent.com/oraichain/cosmosia/dev/relay/composable_config.toml"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/get_last_ibc_client_update"
+        }
+      ],
+      "title": "Last Client Update [composable]",
+      "transparent": true,
+      "type": "table"
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 24,
+        "w": 8,
+        "x": 8,
+        "y": 1
+      },
+      "id": 60,
+      "options": {
+        "afterRender": "",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "markdown"
+        },
+        "editors": [],
+        "externalScripts": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": false
+      },
+      "pluginVersion": "4.5.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 60,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[*].account"
             },
             {
-              "jsonPath": "$.[*].client_id",
+              "jsonPath": "$.[*].chain_id",
               "language": "jsonpath",
               "name": ""
             },
             {
-              "jsonPath": "$.[*].seconds_ago",
+              "jsonPath": "$.[*].denom",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].message",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].need_refill",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].refill_threshold",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].value",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "relayer_hub_name",
+              "composable"
+            ],
+            [
+              "process",
+              "main"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/get_wallet_balance"
+        }
+      ],
+      "title": "Wallet Balances [composable]",
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 24,
+        "w": 8,
+        "x": 16,
+        "y": 1
+      },
+      "id": 61,
+      "options": {
+        "afterRender": "",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "markdown"
+        },
+        "editors": [],
+        "externalScripts": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": false
+      },
+      "pluginVersion": "4.5.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 60,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[*].account"
+            },
+            {
+              "jsonPath": "$.[*].chain_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].denom",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].message",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].need_refill",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].refill_threshold",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].value",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "relayer_hub_name",
+              "composable"
+            ],
+            [
+              "process",
+              "cron"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/get_wallet_balance"
+        }
+      ],
+      "title": "Wallet Balances - Cron [composable]",
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 42,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": false,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "{job=\"hermes_composable\"} != `misbehaviour` != `websocket` != `packet messages are redundant` != `missing chain config`",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Log [composable]",
+      "transparent": true,
+      "type": "logs"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 9,
+      "panels": [],
+      "title": "Coreum ✔️",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 1,
+                "result": {
+                  "color": "#fade2a3d",
+                  "index": 0
+                },
+                "to": 4
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 5,
+                "result": {
+                  "color": "#f2495c7a",
+                  "index": 1
+                },
+                "to": 9999
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pending_packets"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "time_ago"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
+                      "result": {
+                        "color": "#f2495c80",
+                        "index": 0
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
+                      "result": {
+                        "color": "#fade2a2b",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 24,
+        "w": 8,
+        "x": 0,
+        "y": 37
+        "y": 37
+      },
+      "id": 8,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "body": "",
+          "cacheDurationSeconds": 60,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[*].chain_id"
+            },
+            {
+              "jsonPath": "$.[*].channel_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].counter_chain_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].pending_packets",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].time_ago",
               "language": "jsonpath",
               "name": ""
             }
@@ -213,7 +743,7 @@
           "params": [
             [
               "hermes_config_url",
-              "https://raw.githubusercontent.com/notional-labs/cosmosia/main/relay/quicksilver_config.toml"
+              "https://raw.githubusercontent.com/oraichain/cosmosia/dev/relay/coreum_config.toml"
             ]
           ],
           "queryParams": "",
@@ -221,7 +751,7 @@
           "urlPath": "/get_last_ibc_client_update"
         }
       ],
-      "title": "Last Client Update [quicksilver]",
+      "title": "Last Client Update [coreum]",
       "transparent": true,
       "type": "table"
     },
@@ -250,398 +780,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
-        "w": 8,
-        "x": 8,
-        "y": 1
-      },
-      "id": 81,
-      "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "height": 200,
-          "language": "markdown"
-        },
-        "editors": [],
-        "externalScripts": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": false
-      },
-      "pluginVersion": "5.0.0",
-      "targets": [
-        {
-          "cacheDurationSeconds": 60,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.[*].account"
-            },
-            {
-              "jsonPath": "$.[*].chain_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].denom",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].message",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].need_refill",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].refill_threshold",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].value",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "relayer_hub_name",
-              "quicksilver"
-            ],
-            [
-              "process",
-              "main"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/get_wallet_balance"
-        }
-      ],
-      "title": "Wallet Balances [quicksilver]",
-      "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-    },
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 8,
-        "x": 16,
-        "y": 1
-      },
-      "id": 82,
-      "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "height": 200,
-          "language": "markdown"
-        },
-        "editors": [],
-        "externalScripts": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": false
-      },
-      "pluginVersion": "5.0.0",
-      "targets": [
-        {
-          "cacheDurationSeconds": 60,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.[*].account"
-            },
-            {
-              "jsonPath": "$.[*].chain_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].denom",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].message",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].need_refill",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].refill_threshold",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].value",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "relayer_hub_name",
-              "quicksilver"
-            ],
-            [
-              "process",
-              "cron"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/get_wallet_balance"
-        }
-      ],
-      "title": "Wallet Balances - Cron [quicksilver]",
-      "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-    },
-    {
-      "datasource": {
-        "type": "loki",
-        "uid": "P8E80F9AEF21F6940"
-      },
-      "description": "",
-      "gridPos": {
-        "h": 6,
-        "w": 24,
-        "x": 0,
-        "y": 12
-      },
-      "id": 83,
-      "options": {
-        "dedupStrategy": "none",
-        "enableLogDetails": false,
-        "prettifyLogMessage": false,
-        "showCommonLabels": false,
-        "showLabels": false,
-        "showTime": false,
-        "sortOrder": "Descending",
-        "wrapLogMessage": true
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
-          "editorMode": "code",
-          "expr": "{job=\"hermes_quicksilver\"} != `-32603` != `packet messages are redundant` != `503 Service Unavailable` != `retrying in `",
-          "queryType": "range",
-          "refId": "A"
-        }
-      ],
-      "title": "Log [quicksilver]",
-      "transparent": true,
-      "type": "logs"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 18
-      },
-      "id": 9,
-      "panels": [],
-      "title": "Coreum ✔️",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-      },
-      "description": "",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "transparent",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 8,
-        "x": 0,
-        "y": 37
-        "y": 37
-      },
-      "id": 85,
-      "id": 85,
-      "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "language": "markdown"
-        },
-        "editors": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": true
-      },
-      "pluginVersion": "5.0.0",
-      "targets": [
-        {
-          "body": "",
-          "cacheDurationSeconds": 60,
-          "datasource": {
-            "type": "marcusolsson-json-datasource",
-            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-          },
-          "fields": [
-            {
-              "jsonPath": "$.[*].chain_id"
-            },
-            {
-              "jsonPath": "$.[*].channel_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].counter_chain_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].pending_packets",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].time_ago",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].client_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].seconds_ago",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].client_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].seconds_ago",
-              "language": "jsonpath",
-              "name": ""
-            }
-          ],
-          "method": "GET",
-          "params": [
-            [
-              "hermes_config_url",
-              "https://raw.githubusercontent.com/oraichain/cosmosia/dev/relay/coreum_config.toml"
-            ]
-          ],
-          "queryParams": "",
-          "refId": "A",
-          "urlPath": "/get_last_ibc_client_update"
-        }
-      ],
-      "title": "Last Client Update [coreum]",
-      "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-      "type": "marcusolsson-dynamictext-panel"
-    },
-    {
-      "datasource": {
-        "type": "marcusolsson-json-datasource",
-        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 12,
+        "h": 24,
         "w": 8,
         "x": 8,
         "y": 37
@@ -650,8 +789,7 @@
       "id": 5,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -666,7 +804,7 @@
         "styles": "",
         "wrap": false
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "4.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 60,
@@ -754,7 +892,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 24,
         "w": 8,
         "x": 16,
         "y": 37
@@ -763,8 +901,7 @@
       "id": 55,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -779,7 +916,7 @@
         "styles": "",
         "wrap": false
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "4.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 60,
@@ -872,7 +1009,7 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "{job=\"hermes_coreum\"} != `-32603` != `packet messages are redundant` != `503 Service Unavailable` != `retrying in `",
+          "expr": "{job=\"hermes_coreum\"} != `misbehaviour` != `websocket` != `packet messages are redundant` != `missing chain config`",
           "queryType": "range",
           "refId": "A"
         }
@@ -901,10 +1038,42 @@
         "type": "marcusolsson-json-datasource",
         "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
       },
-      "description": "",
-      "description": "",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 1,
+                "result": {
+                  "color": "#fade2a3d",
+                  "index": 0
+                },
+                "to": 4
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 5,
+                "result": {
+                  "color": "#f2495c7a",
+                  "index": 1
+                },
+                "to": 9999
+              },
+              "type": "range"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -915,33 +1084,85 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pending_packets"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "time_ago"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
+                      "result": {
+                        "color": "#f2495c75",
+                        "index": 0
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
+                      "result": {
+                        "color": "#fade2a36",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 7,
+        "h": 14,
         "w": 8,
         "x": 0,
         "y": 68
         "y": 68
       },
-      "id": 86,
-      "id": 86,
+      "id": 12,
       "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "language": "markdown"
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "editors": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": true
+        "showHeader": true
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "body": "",
@@ -973,26 +1194,6 @@
               "jsonPath": "$.[*].time_ago",
               "language": "jsonpath",
               "name": ""
-            },
-            {
-              "jsonPath": "$.[*].client_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].seconds_ago",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].client_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].seconds_ago",
-              "language": "jsonpath",
-              "name": ""
             }
           ],
           "method": "GET",
@@ -1009,8 +1210,7 @@
       ],
       "title": "Last Client Update [furya]",
       "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-      "type": "marcusolsson-dynamictext-panel"
+      "type": "table"
     },
     {
       "datasource": {
@@ -1037,7 +1237,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 14,
         "w": 8,
         "x": 8,
         "y": 68
@@ -1046,8 +1246,7 @@
       "id": 56,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -1062,7 +1261,7 @@
         "styles": "",
         "wrap": false
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "4.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 60,
@@ -1150,7 +1349,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 14,
         "w": 8,
         "x": 16,
         "y": 68
@@ -1159,8 +1358,7 @@
       "id": 57,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -1175,7 +1373,7 @@
         "styles": "",
         "wrap": false
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "4.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 60,
@@ -1268,7 +1466,7 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "{job=\"hermes_furya\"} != `-32603` != `packet messages are redundant` != `503 Service Unavailable` != `retrying in `",
+          "expr": "{job=\"hermes_furya\"} != `misbehaviour` != `websocket` != `packet messages are redundant` != `missing chain config`",
           "queryType": "range",
           "refId": "A"
         }
@@ -1470,8 +1668,7 @@
       ],
       "title": "Last Client Update [kava]",
       "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
-      "type": "marcusolsson-dynamictext-panel"
+      "type": "table"
     },
     {
       "datasource": {
@@ -1498,8 +1695,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "h": 9,
+        "h": 16,
         "w": 8,
         "x": 8,
         "y": 89
@@ -1508,8 +1704,7 @@
       "id": 63,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -1524,7 +1719,7 @@
         "styles": "",
         "wrap": false
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "4.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 60,
@@ -1612,10 +1807,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 8,
-        "h": 9,
-        "w": 8,
+        "h": 15,
+        "w": 7,
         "x": 16,
         "y": 89
         "y": 89
@@ -1623,8 +1816,7 @@
       "id": 62,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -1639,7 +1831,7 @@
         "styles": "",
         "wrap": false
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "4.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 60,
@@ -1732,7 +1924,7 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "{job=\"hermes_kava\"} != `-32603` != `packet messages are redundant` != `503 Service Unavailable` != `retrying in `",
+          "expr": "{job=\"hermes_kava\"} != `misbehaviour` != `websocket` != `packet messages are redundant` != `missing chain config`",
           "queryType": "range",
           "refId": "A"
         }
@@ -2660,9 +2852,9 @@
         "y": 155
         "y": 155
       },
-      "id": 74,
+      "id": 13,
       "panels": [],
-      "title": "whitewhale-testnet",
+      "title": "Whitewhale ✔️",
       "type": "row"
     },
     {
@@ -2673,6 +2865,40 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 1,
+                "result": {
+                  "color": "#fade2a3d",
+                  "index": 0
+                },
+                "to": 4
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 5,
+                "result": {
+                  "color": "#f2495c7a",
+                  "index": 1
+                },
+                "to": 9999
+              },
+              "type": "range"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -2683,32 +2909,85 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pending_packets"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "time_ago"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
+                      "result": {
+                        "color": "#f2495c80",
+                        "index": 0
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
+                      "result": {
+                        "color": "#fade2a26",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 5,
+        "h": 17,
         "w": 8,
         "x": 0,
         "y": 156
         "y": 156
       },
-      "id": 89,
+      "id": 15,
       "options": {
-        "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 10)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
-        "defaultContent": "The query didn't return any results.",
-        "editor": {
-          "format": "auto",
-          "language": "markdown"
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "editors": [],
-        "externalStyles": [],
-        "helpers": "",
-        "renderMode": "allRows",
-        "styles": "",
-        "wrap": true
+        "showHeader": true
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "body": "",
@@ -2740,23 +3019,13 @@
               "jsonPath": "$.[*].time_ago",
               "language": "jsonpath",
               "name": ""
-            },
-            {
-              "jsonPath": "$.[*].client_id",
-              "language": "jsonpath",
-              "name": ""
-            },
-            {
-              "jsonPath": "$.[*].seconds_ago",
-              "language": "jsonpath",
-              "name": ""
             }
           ],
           "method": "GET",
           "params": [
             [
               "hermes_config_url",
-              "https://raw.githubusercontent.com/notional-labs/cosmosia/main/relay/whitewhale-testnet_config.toml"
+              "https://raw.githubusercontent.com/oraichain/cosmosia/dev/relay/whitewhale_config.toml"
             ]
           ],
           "queryParams": "",
@@ -2764,9 +3033,9 @@
           "urlPath": "/get_last_ibc_client_update"
         }
       ],
-      "title": "Last Client Update [whitewhale-testnet]",
+      "title": "Last Client Update [whitewhale]",
       "transparent": true,
-      "type": "marcusolsson-dynamictext-panel"
+      "type": "table"
     },
     {
       "datasource": {
@@ -2793,16 +3062,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 16,
         "w": 8,
         "x": 8,
         "y": 156
         "y": 156
       },
-      "id": 76,
+      "id": 72,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -2817,7 +3086,7 @@
         "styles": "",
         "wrap": false
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "4.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 60,
@@ -2864,7 +3133,7 @@
           "params": [
             [
               "relayer_hub_name",
-              "whitewhale-testnet"
+              "whitewhale"
             ],
             [
               "process",
@@ -2876,7 +3145,7 @@
           "urlPath": "/get_wallet_balance"
         }
       ],
-      "title": "Wallet Balances [whitewhale-testnet]",
+      "title": "Wallet Balances [whitewhale]",
       "transparent": true,
       "type": "marcusolsson-dynamictext-panel"
     },
@@ -2905,16 +3174,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 16,
         "w": 8,
         "x": 16,
         "y": 156
         "y": 156
       },
-      "id": 77,
+      "id": 73,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>{{account}}/{{chain_id}}</td>\n    <td>{{value}}{{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -2929,7 +3198,7 @@
         "styles": "",
         "wrap": false
       },
-      "pluginVersion": "5.0.0",
+      "pluginVersion": "4.5.0",
       "targets": [
         {
           "cacheDurationSeconds": 60,
@@ -2976,7 +3245,7 @@
           "params": [
             [
               "relayer_hub_name",
-              "whitewhale-testnet"
+              "whitewhale"
             ],
             [
               "process",
@@ -2988,7 +3257,7 @@
           "urlPath": "/get_wallet_balance"
         }
       ],
-      "title": "Wallet Balances - Cron [whitewhale-testnet]",
+      "title": "Wallet Balances - Cron [whitewhale]",
       "transparent": true,
       "type": "marcusolsson-dynamictext-panel"
     },
@@ -3004,7 +3273,7 @@
         "y": 173
         "y": 173
       },
-      "id": 78,
+      "id": 49,
       "options": {
         "dedupStrategy": "none",
         "enableLogDetails": false,
@@ -3022,16 +3291,17 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "{job=\"hermes_whitewhale-testnet\"} != `-32603` != `packet messages are redundant` != `503 Service Unavailable` != `retrying in `",
+          "expr": "{job=\"hermes_whitewhale\"} != `misbehaviour` != `websocket` != `packet messages are redundant` != `missing chain config`",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Log [whitewhale-testnet]",
+      "title": "Log [whitewhale]",
       "transparent": true,
       "type": "logs"
     }
   ],
+  "refresh": "",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
@@ -3041,8 +3311,6 @@
     "from": "now-6h",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "utc",
   "title": "MyDashboard",
