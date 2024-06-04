@@ -21,3 +21,5 @@ fi
 # go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...
 
 go mod tidy
+make install
+echo "finish install go binary"
