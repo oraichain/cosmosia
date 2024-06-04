@@ -32,49 +32,9 @@ if [[ -z $build_script ]]; then
   git clone --single-branch --branch $version $git_repo
   repo_name=$(basename $git_repo |cut -d. -f1)
   cd $repo_name
-
-  if [[ $db_backend == "pebbledb" ]]; then
-    if [ $( echo "${chain_name}" |grep -cE "^(cosmoshub|cheqd|terra|terra-archive|assetmantle)$" ) -ne 0 ]; then
-      go mod edit -dropreplace github.com/tecbot/gorocksdb
-    elif [[ $chain_name == "gravitybridge" ]]; then
-      cd module
-    elif [ $( echo "${chain_name}" |grep -cE "^(dydx|dydx-testnet|dydx-archive-sub)$" ) -ne 0 ]; then
-      cd protocol
-    fi
-
-    go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
-
-    if [ $( echo "${chain_name}" |grep -cE "^(cyber|provenance|furya)$" ) -ne 0 ]; then
-      go mod tidy -compat=1.17
-    else
-      go mod tidy
-    fi
-
-    go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
-    if [ $( echo "${chain_name}" |grep -cE "^(cyber|provenance|furya)$" ) -ne 0 ]; then
-      go mod tidy -compat=1.17
-    else
-      go mod tidy
-    fi
-
-    # go work use
-
-    # if [ $( echo "${chain_name}" |grep -cE "^(emoney)$" ) -ne 0 ]; then
-    #   sed -i 's/db.NewGoLevelDB/sdk.NewLevelDB/g' app.go
-    #   go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb -X github.com/e-money/cosmos-sdk/types.DBBackend=pebbledb -X github.com/tendermint/tm-db.ForceSync=1" ./...
-    # elif [ $( echo "${chain_name}" |grep -cE "^(starname|sifchain)$" ) -ne 0 ]; then
-    #   go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./cmd/$daemon_name
-    # else
-    #   go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...
-    # fi
-
-    ## copy binary from gvm to $HOME/go/bin/
-    #if [ "$use_gvm" = true ]; then
-    #  cp /root/.gvm/pkgsets/go1.18.10/global/bin/$daemon_name /root/go/bin/
-    #fi
-  else
-    make install
-  fi
+  make install
+  
+  echo "install go binary"
 else
   source <(curl -Ls -o- "$build_script")
 fi
