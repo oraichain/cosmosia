@@ -1,5 +1,5 @@
 pacman -Syu --noconfirm
-pacman -S --noconfirm git base-devel python python-pip nginx screen
+pacman -S --noconfirm git base-devel python python-pip nginx screen python-distutils-extra
 
 ################################################################################
 # web_config
