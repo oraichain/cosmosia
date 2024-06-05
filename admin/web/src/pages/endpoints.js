@@ -24,8 +24,8 @@ export async function getServerSideProps({req, res}) {
         const domain = process.env.NEXT_PUBLIC_USE_DOMAIN_NAME;
 
         // public endpoints
-        const public_rpc = `https://rpc-${chain}-ia.cosmosia.${domain}/`;
-        const public_api = `https://api-${chain}-ia.cosmosia.${domain}/`;
+        const public_rpc = `https://rpc-${chain}.${domain}/`;
+        const public_api = `https://api-${chain}.${domain}/`;
         const public_grpc = `grpc-${chain}-ia.cosmosia.${domain}:433`;
 
         // internal endpoints
@@ -80,51 +80,51 @@ const EndpointTable = (props) => {
             return (<Link href={text}><GlobalOutlined /></Link>);
           },
         },
-        {
-          title: 'Public Api',
-          dataIndex: 'public_api',
-          key: 'public_api',
-          width: 150,
-          render: (text) => {
-            return (<Link href={text}><GlobalOutlined /></Link>);
-          },
-        },
-        {
-          title: 'Public Grpc',
-          dataIndex: 'public_grpc',
-          key: 'public_grpc',
-          width: 150,
-          render: (text) => {
-            return (<Link href={text}><GlobalOutlined /></Link>);
-          },
-        },
-        {
-          title: 'Internal RPC',
-          dataIndex: 'internal_rpc',
-          key: 'internal_rpc',
-          width: 150,
-          render: (text) => {
-            return (<Link href={text}><GlobalOutlined /></Link>);
-          },
-        },
-        {
-          title: 'Internal Api',
-          dataIndex: 'internal_api',
-          key: 'internal_api',
-          width: 150,
-          render: (text) => {
-            return (<Link href={text}><GlobalOutlined /></Link>);
-          },
-        },
-        {
-          title: 'Internal Grpc',
-          dataIndex: 'internal_grpc',
-          key: 'internal_grpc',
-          width: 150,
-          render: (text) => {
-            return (<Link href={text}><GlobalOutlined /></Link>);
-          },
-        },
+        // {
+        //   title: 'Public Api',
+        //   dataIndex: 'public_api',
+        //   key: 'public_api',
+        //   width: 150,
+        //   render: (text) => {
+        //     return (<Link href={text}><GlobalOutlined /></Link>);
+        //   },
+        // },
+        // {
+        //   title: 'Public Grpc',
+        //   dataIndex: 'public_grpc',
+        //   key: 'public_grpc',
+        //   width: 150,
+        //   render: (text) => {
+        //     return (<Link href={text}><GlobalOutlined /></Link>);
+        //   },
+        // },
+        // {
+        //   title: 'Internal RPC',
+        //   dataIndex: 'internal_rpc',
+        //   key: 'internal_rpc',
+        //   width: 150,
+        //   render: (text) => {
+        //     return (<Link href={text}><GlobalOutlined /></Link>);
+        //   },
+        // },
+        // {
+        //   title: 'Internal Api',
+        //   dataIndex: 'internal_api',
+        //   key: 'internal_api',
+        //   width: 150,
+        //   render: (text) => {
+        //     return (<Link href={text}><GlobalOutlined /></Link>);
+        //   },
+        // },
+        // {
+        //   title: 'Internal Grpc',
+        //   dataIndex: 'internal_grpc',
+        //   key: 'internal_grpc',
+        //   width: 150,
+        //   render: (text) => {
+        //     return (<Link href={text}><GlobalOutlined /></Link>);
+        //   },
+        // },
       ]}
       dataSource={data}
       pagination={false}
