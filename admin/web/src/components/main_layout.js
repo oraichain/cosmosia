@@ -143,7 +143,7 @@ export default function MainLayout({children}) {
         </div>
       </Content>
 
-      <Footer style={{textAlign: 'center', background: 'white'}}>notional.ventures</Footer>
+      <Footer style={{textAlign: 'center', background: 'white'}}>orai.network</Footer>
     </Layout>
   );
 }

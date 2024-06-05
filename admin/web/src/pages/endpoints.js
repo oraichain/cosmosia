@@ -41,10 +41,10 @@ export async function getServerSideProps({req, res}) {
           name: chain,
           public_rpc,
           public_api,
-          public_grpc,
-          internal_rpc,
-          internal_api,
-          internal_grpc,
+          // public_grpc,
+          // internal_rpc,
+          // internal_api,
+          // internal_grpc,
         });
       }
 
@@ -80,15 +80,15 @@ const EndpointTable = (props) => {
             return (<Link href={text}><GlobalOutlined /></Link>);
           },
         },
-        // {
-        //   title: 'Public Api',
-        //   dataIndex: 'public_api',
-        //   key: 'public_api',
-        //   width: 150,
-        //   render: (text) => {
-        //     return (<Link href={text}><GlobalOutlined /></Link>);
-        //   },
-        // },
+        {
+          title: 'Public Api',
+          dataIndex: 'public_api',
+          key: 'public_api',
+          width: 150,
+          render: (text) => {
+            return (<Link href={text}><GlobalOutlined /></Link>);
+          },
+        },
         // {
         //   title: 'Public Grpc',
         //   dataIndex: 'public_grpc',
