@@ -60,7 +60,7 @@ done
 ########################################################################################################################
 # run the metrics server (for reporting wallet balances)
 cd $HOME
-git clone --single-branch --branch main https://github.com/oraichain/cosmosia
+git clone --single-branch --branch dev https://github.com/oraichain/cosmosia
 cd cosmosia/relay/cron/metrics
 
 pip install -r requirements.txt --break-system-packages

@@ -4,7 +4,7 @@ pacman -S --noconfirm git base-devel python python-pip nginx screen python-distu
 ################################################################################
 # web_config
 cd $HOME
-git clone --single-branch --branch main https://github.com/oraichain/cosmosia
+git clone --single-branch --branch dev https://github.com/oraichain/cosmosia
 cd $HOME/cosmosia/web_config
 
 # add --break-system-packages to fix error: externally-managed-environment

@@ -165,7 +165,7 @@ curl -Ls "https://raw.githubusercontent.com/oraichain/cosmosia/dev/snapshot/snap
 ########################################################################################################################
 echo "install cosmos-pruner"
 cd $HOME
-git clone --single-branch --branch main https://github.com/oraichain/cosmprund
+git clone --single-branch --branch dev https://github.com/oraichain/cosmprund
 cd cosmprund
 make install
 
