@@ -162,7 +162,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "body": "",
@@ -613,7 +613,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "body": "",
@@ -1064,7 +1064,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "body": "",
@@ -1517,7 +1517,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "body": "",
@@ -1828,6 +1828,7 @@
       "type": "logs"
     },
     {
+<<<<<<< HEAD
       "collapsed": false,
       "gridPos": {
         "h": 1,
@@ -2281,12 +2282,14 @@
       "type": "logs"
     },
     {
+=======
+>>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 154
+        "y": 112
       },
       "id": 11,
       "panels": [
@@ -2735,7 +2738,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 155
+        "y": 113
       },
       "id": 13,
       "panels": [],
@@ -2856,7 +2859,7 @@
         "h": 17,
         "w": 8,
         "x": 0,
-        "y": 156
+        "y": 114
       },
       "id": 15,
       "options": {
@@ -2871,7 +2874,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.4.2",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "body": "",
@@ -2949,7 +2952,7 @@
         "h": 16,
         "w": 8,
         "x": 8,
-        "y": 156
+        "y": 114
       },
       "id": 72,
       "options": {
@@ -3060,7 +3063,7 @@
         "h": 16,
         "w": 8,
         "x": 16,
-        "y": 156
+        "y": 114
       },
       "id": 73,
       "options": {
@@ -3152,7 +3155,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 173
+        "y": 131
       },
       "id": 49,
       "options": {
@@ -3192,6 +3195,7 @@
     "from": "now-6h",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "utc",
   "title": "MyDashboard",
