@@ -14,6 +14,7 @@ fi
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
 # go mod tidy
@@ -40,3 +41,8 @@ go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.
 =======
 >>>>>>> f96366d (fix conflict)
 >>>>>>> 055e1f6 (fix conflict)
+=======
+go mod tidy
+make install
+echo "finish install go binary"
+>>>>>>> 504abb2 (change config)

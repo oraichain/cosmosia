@@ -20,8 +20,8 @@ nvm install v18.14.0
 npm install --global yarn
 
 cd $HOME
-<<<<<<< HEAD
 git clone --single-branch --branch dev https://github.com/oraichain/upgrade-watcher
+<<<<<<< HEAD
 =======
 git clone --single-branch --branch main https://github.com/oraichain/upgrade-watcher
 <<<<<<< HEAD
@@ -29,6 +29,8 @@ git clone --single-branch --branch main https://github.com/oraichain/upgrade-wat
 =======
 >>>>>>> f96366d (fix conflict)
 >>>>>>> 055e1f6 (fix conflict)
+=======
+>>>>>>> 504abb2 (change config)
 
 ########################################
 # backend

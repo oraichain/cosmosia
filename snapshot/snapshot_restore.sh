@@ -33,10 +33,10 @@ if [[ -z $build_script ]]; then
   git clone --single-branch --branch $version $git_repo
   repo_name=$(basename $git_repo |cut -d. -f1)
   cd $repo_name
-<<<<<<< HEAD
   make install
   
   echo "install go binary"
+<<<<<<< HEAD
 =======
 
   if [[ $db_backend == "pebbledb" ]]; then
@@ -86,6 +86,8 @@ if [[ -z $build_script ]]; then
 =======
 >>>>>>> f96366d (fix conflict)
 >>>>>>> 055e1f6 (fix conflict)
+=======
+>>>>>>> 504abb2 (change config)
 else
   source <(curl -Ls -o- "$build_script")
 fi

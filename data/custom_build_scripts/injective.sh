@@ -14,6 +14,7 @@ fi
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
 # go mod tidy
@@ -32,6 +33,8 @@ go mod tidy
 # go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...
 
 >>>>>>> 055e1f6 (fix conflict)
+=======
+>>>>>>> 504abb2 (change config)
 go mod tidy
 make install
 echo "finish install go binary"
