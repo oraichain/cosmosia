@@ -25,7 +25,11 @@ echo "##########################################################################
 echo "install subnode"
 
 cd $HOME
+<<<<<<< HEAD
 git clone --single-branch --branch dev https://github.com/oraichain/subnode
+=======
+git clone --single-branch --branch main https://github.com/oraichain/subnode
+>>>>>>> f96366d (fix conflict)
 cd subnode
 make install
 
