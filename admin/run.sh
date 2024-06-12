@@ -12,11 +12,7 @@ nvm install v18.14.0
 yarn set version v18.14.0
 
 cd $HOME
-<<<<<<< HEAD
 git clone --single-branch --branch dev https://github.com/oraichain/cosmosia
-=======
-git clone --single-branch --branch main https://github.com/oraichain/cosmosia
->>>>>>> f96366d (fix conflict)
 
 # create env.sh for cosmosia
 cat <<EOT >> $HOME/cosmosia/env.sh
