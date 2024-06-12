@@ -13,6 +13,17 @@ else
 fi
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+# go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
+# go mod tidy
+# go mod edit -replace github.com/cosmos/cosmos-db=github.com/oraichain/cosmos-db@v1.0.0-139b9ba
+# go mod tidy
+# go mod edit -replace github.com/cockroachdb/pebble=github.com/cockroachdb/pebble@v1.0.0
+# go mod tidy
+# go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...
+
+>>>>>>> 055e1f6 (fix conflict)
 go mod tidy
 make install
 echo "finish install go binary"
@@ -24,4 +35,8 @@ go mod tidy
 go mod edit -replace github.com/cockroachdb/pebble=github.com/cockroachdb/pebble@v1.0.0
 go mod tidy
 go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...
+<<<<<<< HEAD
 >>>>>>> 2a95595 (first add)
+=======
+>>>>>>> f96366d (fix conflict)
+>>>>>>> 055e1f6 (fix conflict)

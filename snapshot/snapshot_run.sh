@@ -169,7 +169,11 @@ cd $HOME
 git clone --single-branch --branch dev https://github.com/oraichain/cosmprund
 =======
 git clone --single-branch --branch main https://github.com/oraichain/cosmprund
+<<<<<<< HEAD
 >>>>>>> 2a95595 (first add)
+=======
+>>>>>>> f96366d (fix conflict)
+>>>>>>> 055e1f6 (fix conflict)
 cd cosmprund
 make install
 
