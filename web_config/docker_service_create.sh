@@ -8,7 +8,6 @@ docker service create \
   --network bignet \
   --network cosmosia \
   --network snapshot \
-  --network notionalapi \
   --network net1 \
   --network net2 \
   --network net3 \

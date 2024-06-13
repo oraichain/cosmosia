@@ -10,7 +10,6 @@ docker service create \
   --publish mode=host,target=9090,published=9090 \
   --network bignet \
   --network cosmosia \
-  --network notionalapi \
   --constraint 'node.hostname==cosmosia29' \
   --sysctl 'net.ipv4.tcp_tw_reuse=1' \
   --restart-condition none \
