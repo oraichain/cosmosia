@@ -26,8 +26,6 @@ items=$(curl -s "$URL" |jq -c -r '.[]')
 
 TESTNETS="(testnet|narwhal-2|osmo-test-5|theta-testnet-001)"
 
-UPDATED_CLIENTS=""
-
 echo "$items" | while IFS= read -r item ; do
   chain_id=$(echo "$item" |jq -r .chain_id)
   client_id=$(echo $item |jq -r .client_id)
@@ -49,6 +47,8 @@ echo "$items" | while IFS= read -r item ; do
       threshold_time=3600
     fi
 
+    # 1 hour for testnet, but we dont know if its a testnet based on chain-id, so have to make a list
+    if [ $( echo "${chain_id}" | grep -cE $TESTNETS ) -ne 0 ] || [ $( echo "${counter_chain_id}" | grep -cE $TESTNETS ) -ne 0 ] ; then
     # 1 hour for testnet, but we dont know if its a testnet based on chain-id, so have to make a list
     if [ $( echo "${chain_id}" | grep -cE $TESTNETS ) -ne 0 ] || [ $( echo "${counter_chain_id}" | grep -cE $TESTNETS ) -ne 0 ] ; then
       threshold_time=3600
