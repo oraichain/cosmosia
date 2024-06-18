@@ -165,8 +165,16 @@ cat <<EOT >> $HOME/start_chain.sh
 source $HOME/env.sh
 # fix supervisorctl creates a dbus-daemon process everytime starting chain
 killall dbus-daemon
-$HOME/go/bin/$daemon_name start $start_flags 1>&2
+#$HOME/go/bin/$daemon_name start $start_flags 1>&2
+/usr/local/bin/cosmovisor start $start_flags 1>&2
 EOT
+
+# install cosmovisor
+go install github.com/cosmos/cosmos-sdk/cosmovisor/cmd/cosmovisor@latest
+mkdir -p $node_home/cosmovisor/genesis/bin
+mkdir -p $node_home/cosmovisor/upgrades
+cp $(which $daemon_name) $node_home/cosmovisor/genesis/bin/
+
 
 # add this /etc/supervisor.d/chain.conf to have long logs
 # stderr_logfile_maxbytes=1GB
@@ -181,6 +189,7 @@ stopasgroup=true
 killasgroup=true
 stderr_logfile=/var/log/chain.err.log
 stdout_logfile=/var/log/chain.out.log
+environment=DAEMON_NAME="$daemon_name",DAEMON_HOME="$node_home",DAEMON_ALLOW_DOWNLOAD_BINARIES="true",DAEMON_RESTART_AFTER_UPGRADE="true",UNSAFE_SKIP_BACKUP="true"
 EOT
 
 supervisord
