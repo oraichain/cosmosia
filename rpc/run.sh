@@ -166,7 +166,7 @@ source $HOME/env.sh
 # fix supervisorctl creates a dbus-daemon process everytime starting chain
 killall dbus-daemon
 #$HOME/go/bin/$daemon_name start $start_flags 1>&2
-/usr/local/bin/cosmovisor start $start_flags 1>&2
+/root/go/bin/cosmovisor run start 1>&2
 EOT
 
 # install cosmovisor
