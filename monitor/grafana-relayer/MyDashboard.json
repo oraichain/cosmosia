@@ -29,6 +29,458 @@
         "x": 0,
         "y": 0
       },
+      "id": 79,
+      "panels": [],
+      "title": "quicksilver",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 1,
+                "result": {
+                  "color": "#fade2a3d",
+                  "index": 0
+                },
+                "to": 4
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 5,
+                "result": {
+                  "color": "#f2495c7a",
+                  "index": 1
+                },
+                "to": 9999
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pending_packets"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "time_ago"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
+                      "result": {
+                        "color": "#f2495c87",
+                        "index": 0
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
+                      "result": {
+                        "color": "#fade2a30",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 29,
+        "w": 8,
+        "x": 0,
+        "y": 1
+      },
+      "id": 80,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.0.0",
+      "targets": [
+        {
+          "body": "",
+          "cacheDurationSeconds": 60,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[*].chain_id"
+            },
+            {
+              "jsonPath": "$.[*].channel_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].counter_chain_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].pending_packets",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].time_ago",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "hermes_config_url",
+              "https://raw.githubusercontent.com/notional-labs/cosmosia/main/relay/quicksilver_config.toml"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/get_last_ibc_client_update"
+        }
+      ],
+      "title": "Last Client Update [quicksilver]",
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 24,
+        "w": 8,
+        "x": 8,
+        "y": 1
+      },
+      "id": 81,
+      "options": {
+        "afterRender": "",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "markdown"
+        },
+        "editors": [],
+        "externalScripts": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": false
+      },
+      "pluginVersion": "5.0.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 60,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[*].account"
+            },
+            {
+              "jsonPath": "$.[*].chain_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].denom",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].message",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].need_refill",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].refill_threshold",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].value",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "relayer_hub_name",
+              "quicksilver"
+            ],
+            [
+              "process",
+              "main"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/get_wallet_balance"
+        }
+      ],
+      "title": "Wallet Balances [quicksilver]",
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "marcusolsson-json-datasource",
+        "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 24,
+        "w": 8,
+        "x": 16,
+        "y": 1
+      },
+      "id": 82,
+      "options": {
+        "afterRender": "",
+        "content": "<table>\n  <tr>\n    <th>account</th>\n    <th>balance</th>\n  </tr>\n  {{#each data}}\n  <tr {{#if (eq need_refill true)}} style=\"background-color: rgba(242, 73, 92, 0.49)\" {{/if}} >\n    <td>\n      <font size=\"+1\">{{account}}</font><br>\n      chain: {{chain_id}}\n    </td>\n    <td>\n      <font size=\"+2\">{{value}}</font> \n      {{denom}}\n    </td>\n  </tr>\n  {{/each}}\n</table>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "height": 200,
+          "language": "markdown"
+        },
+        "editors": [],
+        "externalScripts": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": false
+      },
+      "pluginVersion": "5.0.0",
+      "targets": [
+        {
+          "cacheDurationSeconds": 60,
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
+          },
+          "fields": [
+            {
+              "jsonPath": "$.[*].account"
+            },
+            {
+              "jsonPath": "$.[*].chain_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].denom",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].message",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].need_refill",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].refill_threshold",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].value",
+              "language": "jsonpath",
+              "name": ""
+            }
+          ],
+          "method": "GET",
+          "params": [
+            [
+              "relayer_hub_name",
+              "quicksilver"
+            ],
+            [
+              "process",
+              "cron"
+            ]
+          ],
+          "queryParams": "",
+          "refId": "A",
+          "urlPath": "/get_wallet_balance"
+        }
+      ],
+      "title": "Wallet Balances - Cron [quicksilver]",
+      "transparent": true,
+      "type": "marcusolsson-dynamictext-panel"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 83,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": false,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "editorMode": "code",
+          "expr": "{job=\"hermes_quicksilver\"} != `misbehaviour` != `websocket` != `packet messages are redundant` != `missing chain config`",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Log [quicksilver]",
+      "transparent": true,
+      "type": "logs"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
       "id": 22,
       "panels": [],
       "title": "Composable ✔️",
@@ -147,7 +599,7 @@
         "h": 29,
         "w": 8,
         "x": 0,
-        "y": 1
+        "y": 37
       },
       "id": 24,
       "options": {
@@ -240,7 +692,7 @@
         "h": 24,
         "w": 8,
         "x": 8,
-        "y": 1
+        "y": 37
       },
       "id": 60,
       "options": {
@@ -351,7 +803,7 @@
         "h": 24,
         "w": 8,
         "x": 16,
-        "y": 1
+        "y": 37
       },
       "id": 61,
       "options": {
@@ -443,7 +895,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 66
       },
       "id": 42,
       "options": {
@@ -478,7 +930,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 72
       },
       "id": 9,
       "panels": [],
@@ -598,8 +1050,12 @@
         "h": 24,
         "w": 8,
         "x": 0,
+<<<<<<< HEAD
         "y": 37
         "y": 37
+=======
+        "y": 73
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 8,
       "options": {
@@ -692,8 +1148,12 @@
         "h": 24,
         "w": 8,
         "x": 8,
+<<<<<<< HEAD
         "y": 37
         "y": 37
+=======
+        "y": 73
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 5,
       "options": {
@@ -804,8 +1264,12 @@
         "h": 24,
         "w": 8,
         "x": 16,
+<<<<<<< HEAD
         "y": 37
         "y": 37
+=======
+        "y": 73
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 55,
       "options": {
@@ -897,8 +1361,12 @@
         "h": 6,
         "w": 24,
         "x": 0,
+<<<<<<< HEAD
         "y": 61
         "y": 61
+=======
+        "y": 97
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 41,
       "options": {
@@ -933,8 +1401,12 @@
         "h": 1,
         "w": 24,
         "x": 0,
+<<<<<<< HEAD
         "y": 67
         "y": 67
+=======
+        "y": 103
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 10,
       "panels": [],
@@ -1054,8 +1526,12 @@
         "h": 14,
         "w": 8,
         "x": 0,
+<<<<<<< HEAD
         "y": 68
         "y": 68
+=======
+        "y": 104
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 12,
       "options": {
@@ -1148,8 +1624,12 @@
         "h": 14,
         "w": 8,
         "x": 8,
+<<<<<<< HEAD
         "y": 68
         "y": 68
+=======
+        "y": 104
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 56,
       "options": {
@@ -1260,8 +1740,12 @@
         "h": 14,
         "w": 8,
         "x": 16,
+<<<<<<< HEAD
         "y": 68
         "y": 68
+=======
+        "y": 104
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 57,
       "options": {
@@ -1353,8 +1837,12 @@
         "h": 6,
         "w": 24,
         "x": 0,
+<<<<<<< HEAD
         "y": 82
         "y": 82
+=======
+        "y": 118
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 43,
       "options": {
@@ -1390,8 +1878,12 @@
         "h": 1,
         "w": 24,
         "x": 0,
+<<<<<<< HEAD
         "y": 88
         "y": 88
+=======
+        "y": 124
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 19,
       "panels": [],
@@ -1512,8 +2004,12 @@
         "h": 17,
         "w": 8,
         "x": 0,
+<<<<<<< HEAD
         "y": 89
         "y": 89
+=======
+        "y": 125
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 21,
       "options": {
@@ -1606,8 +2102,12 @@
         "h": 16,
         "w": 8,
         "x": 8,
+<<<<<<< HEAD
         "y": 89
         "y": 89
+=======
+        "y": 125
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 63,
       "options": {
@@ -1718,8 +2218,12 @@
         "h": 15,
         "w": 7,
         "x": 16,
+<<<<<<< HEAD
         "y": 89
         "y": 89
+=======
+        "y": 125
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 62,
       "options": {
@@ -1811,8 +2315,12 @@
         "h": 6,
         "w": 24,
         "x": 0,
+<<<<<<< HEAD
         "y": 106
         "y": 106
+=======
+        "y": 142
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 45,
       "options": {
@@ -2308,7 +2816,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 112
+        "y": 148
       },
       "id": 11,
       "panels": [
@@ -2761,11 +3269,15 @@
         "w": 24,
         "x": 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 155
         "y": 155
 =======
         "y": 113
 >>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
+=======
+        "y": 149
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 13,
       "panels": [],
@@ -2887,11 +3399,15 @@
         "w": 8,
         "x": 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 156
         "y": 156
 =======
         "y": 114
 >>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
+=======
+        "y": 150
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 15,
       "options": {
@@ -2985,11 +3501,15 @@
         "w": 8,
         "x": 8,
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 156
         "y": 156
 =======
         "y": 114
 >>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
+=======
+        "y": 150
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 72,
       "options": {
@@ -3101,11 +3621,15 @@
         "w": 8,
         "x": 16,
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 156
         "y": 156
 =======
         "y": 114
 >>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
+=======
+        "y": 150
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 73,
       "options": {
@@ -3198,11 +3722,15 @@
         "w": 24,
         "x": 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 173
         "y": 173
 =======
         "y": 131
 >>>>>>> a4ce9ed (relay: remove osmosis from dashboard monitor)
+=======
+        "y": 167
+>>>>>>> 288ec1b (relay: update grafana)
       },
       "id": 49,
       "options": {
@@ -3237,7 +3765,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 137
+        "y": 173
       },
       "id": 74,
       "panels": [],
@@ -3358,7 +3886,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 138
+        "y": 174
       },
       "id": 75,
       "options": {
@@ -3451,7 +3979,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 138
+        "y": 174
       },
       "id": 76,
       "options": {
@@ -3562,7 +4090,7 @@
         "h": 8,
         "w": 7,
         "x": 16,
-        "y": 138
+        "y": 174
       },
       "id": 77,
       "options": {
@@ -3654,7 +4182,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 146
+        "y": 182
       },
       "id": 78,
       "options": {
