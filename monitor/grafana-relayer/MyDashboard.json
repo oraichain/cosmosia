@@ -63,7 +63,7 @@
       "id": 80,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 43200)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -431,7 +431,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 29,
+        "h": 24,
         "w": 8,
         "x": 0,
         "y": 37
@@ -439,7 +439,7 @@
       "id": 84,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 43200)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -508,7 +508,7 @@
           "urlPath": "/get_last_ibc_client_update"
         }
       ],
-      "title": "Last Client Update [quicksilver]",
+      "title": "Last Client Update [composable]",
       "transparent": true,
       "type": "marcusolsson-dynamictext-panel"
     },
@@ -743,7 +743,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 66
+        "y": 61
       },
       "id": 42,
       "options": {
@@ -778,7 +778,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 72
+        "y": 67
       },
       "id": 9,
       "panels": [],
@@ -806,20 +806,24 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 29,
+        "h": 21,
         "w": 8,
         "x": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
         "y": 37
         "y": 37
 =======
         "y": 73
 >>>>>>> 288ec1b (relay: update grafana)
+=======
+        "y": 68
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 85,
       "options": {
         "afterRender": "",
-        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 43200)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
         "defaultContent": "The query didn't return any results.",
         "editor": {
           "format": "auto",
@@ -888,7 +892,7 @@
           "urlPath": "/get_last_ibc_client_update"
         }
       ],
-      "title": "Last Client Update [quicksilver]",
+      "title": "Last Client Update [coreum]",
       "transparent": true,
       "type": "marcusolsson-dynamictext-panel"
     },
@@ -917,15 +921,19 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 24,
+        "h": 21,
         "w": 8,
         "x": 8,
+<<<<<<< HEAD
 <<<<<<< HEAD
         "y": 37
         "y": 37
 =======
         "y": 73
 >>>>>>> 288ec1b (relay: update grafana)
+=======
+        "y": 68
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 5,
       "options": {
@@ -1033,15 +1041,19 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 24,
+        "h": 21,
         "w": 8,
         "x": 16,
+<<<<<<< HEAD
 <<<<<<< HEAD
         "y": 37
         "y": 37
 =======
         "y": 73
 >>>>>>> 288ec1b (relay: update grafana)
+=======
+        "y": 68
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 55,
       "options": {
@@ -1135,6 +1147,7 @@
         "x": 0,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 61
         "y": 61
 =======
@@ -1143,6 +1156,9 @@
 =======
         "y": 102
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 89
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 41,
       "options": {
@@ -1179,6 +1195,7 @@
         "x": 0,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 67
         "y": 67
 =======
@@ -1187,6 +1204,9 @@
 =======
         "y": 108
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 95
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 10,
       "panels": [],
@@ -1198,42 +1218,9 @@
         "type": "marcusolsson-json-datasource",
         "uid": "d953f0e3-52c2-4a12-9d06-66301e0fbb00"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "from": 1,
-                "result": {
-                  "color": "#fade2a3d",
-                  "index": 0
-                },
-                "to": 4
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 5,
-                "result": {
-                  "color": "#f2495c7a",
-                  "index": 1
-                },
-                "to": 9999
-              },
-              "type": "range"
-            }
-          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1244,68 +1231,13 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "pending_packets"
-            },
-            "properties": [
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "basic",
-                  "type": "color-background"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "time_ago"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
-                      "result": {
-                        "color": "#f2495c75",
-                        "index": 0
-                      }
-                    },
-                    "type": "regex"
-                  },
-                  {
-                    "options": {
-                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
-                      "result": {
-                        "color": "#fade2a36",
-                        "index": 1
-                      }
-                    },
-                    "type": "regex"
-                  }
-                ]
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "basic",
-                  "type": "color-background"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 14,
+        "h": 10,
         "w": 8,
         "x": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         "y": 68
@@ -1316,21 +1248,27 @@
 =======
         "y": 109
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 96
+>>>>>>> 16288cd (relay: update dashboard...)
       },
-      "id": 12,
+      "id": 86,
       "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
+        "afterRender": "",
+        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "language": "markdown"
         },
-        "showHeader": true
+        "editors": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "5.0.0",
       "targets": [
         {
           "body": "",
@@ -1362,6 +1300,16 @@
               "jsonPath": "$.[*].time_ago",
               "language": "jsonpath",
               "name": ""
+            },
+            {
+              "jsonPath": "$.[*].client_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].seconds_ago",
+              "language": "jsonpath",
+              "name": ""
             }
           ],
           "method": "GET",
@@ -1378,7 +1326,7 @@
       ],
       "title": "Last Client Update [furya]",
       "transparent": true,
-      "type": "table"
+      "type": "marcusolsson-dynamictext-panel"
     },
     {
       "datasource": {
@@ -1405,9 +1353,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
+        "h": 10,
         "w": 8,
         "x": 8,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         "y": 68
@@ -1418,6 +1367,9 @@
 =======
         "y": 109
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 96
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 56,
       "options": {
@@ -1525,9 +1477,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
+        "h": 10,
         "w": 8,
         "x": 16,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         "y": 68
@@ -1538,6 +1491,9 @@
 =======
         "y": 109
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 96
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 57,
       "options": {
@@ -1631,6 +1587,7 @@
         "x": 0,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 82
         "y": 82
 =======
@@ -1639,6 +1596,9 @@
 =======
         "y": 123
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 106
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 43,
       "options": {
@@ -1676,6 +1636,7 @@
         "x": 0,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 88
         "y": 88
 =======
@@ -1684,6 +1645,9 @@
 =======
         "y": 129
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 112
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 19,
       "panels": [],
@@ -1698,40 +1662,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "from": 1,
-                "result": {
-                  "color": "#fade2a3d",
-                  "index": 0
-                },
-                "to": 4
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 5,
-                "result": {
-                  "color": "#f2495c7a",
-                  "index": 1
-                },
-                "to": 9999
-              },
-              "type": "range"
-            }
-          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1742,68 +1672,13 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "pending_packets"
-            },
-            "properties": [
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "basic",
-                  "type": "color-background"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "time_ago"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
-                      "result": {
-                        "color": "#f2495c7d",
-                        "index": 0
-                      }
-                    },
-                    "type": "regex"
-                  },
-                  {
-                    "options": {
-                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
-                      "result": {
-                        "color": "#fade2a24",
-                        "index": 1
-                      }
-                    },
-                    "type": "regex"
-                  }
-                ]
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "basic",
-                  "type": "color-background"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 17,
+        "h": 14,
         "w": 8,
         "x": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         "y": 89
@@ -1814,21 +1689,27 @@
 =======
         "y": 130
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 113
+>>>>>>> 16288cd (relay: update dashboard...)
       },
-      "id": 21,
+      "id": 87,
       "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
+        "afterRender": "",
+        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "language": "markdown"
         },
-        "showHeader": true
+        "editors": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "5.0.0",
       "targets": [
         {
           "body": "",
@@ -1860,6 +1741,16 @@
               "jsonPath": "$.[*].time_ago",
               "language": "jsonpath",
               "name": ""
+            },
+            {
+              "jsonPath": "$.[*].client_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].seconds_ago",
+              "language": "jsonpath",
+              "name": ""
             }
           ],
           "method": "GET",
@@ -1876,7 +1767,7 @@
       ],
       "title": "Last Client Update [kava]",
       "transparent": true,
-      "type": "table"
+      "type": "marcusolsson-dynamictext-panel"
     },
     {
       "datasource": {
@@ -1908,6 +1799,7 @@
         "x": 8,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 89
         "y": 89
 =======
@@ -1916,6 +1808,9 @@
 =======
         "y": 130
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 113
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 63,
       "options": {
@@ -2028,6 +1923,7 @@
         "x": 16,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 89
         "y": 89
 =======
@@ -2036,6 +1932,9 @@
 =======
         "y": 130
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 113
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 62,
       "options": {
@@ -2129,6 +2028,7 @@
         "x": 0,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 106
         "y": 106
 =======
@@ -2137,6 +2037,9 @@
 =======
         "y": 147
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 129
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 45,
       "options": {
@@ -2632,7 +2535,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 153
+        "y": 135
       },
       "id": 11,
       "panels": [
@@ -3087,6 +2990,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 155
         "y": 155
 =======
@@ -3098,6 +3002,9 @@
 =======
         "y": 154
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 136
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 13,
       "panels": [],
@@ -3112,40 +3019,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "from": 1,
-                "result": {
-                  "color": "#fade2a3d",
-                  "index": 0
-                },
-                "to": 4
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 5,
-                "result": {
-                  "color": "#f2495c7a",
-                  "index": 1
-                },
-                "to": 9999
-              },
-              "type": "range"
-            }
-          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3156,68 +3029,13 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "pending_packets"
-            },
-            "properties": [
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "basic",
-                  "type": "color-background"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "time_ago"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
-                      "result": {
-                        "color": "#f2495c80",
-                        "index": 0
-                      }
-                    },
-                    "type": "regex"
-                  },
-                  {
-                    "options": {
-                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
-                      "result": {
-                        "color": "#fade2a26",
-                        "index": 1
-                      }
-                    },
-                    "type": "regex"
-                  }
-                ]
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "basic",
-                  "type": "color-background"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 17,
+        "h": 14,
         "w": 8,
         "x": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3232,21 +3050,27 @@
 =======
         "y": 155
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 137
+>>>>>>> 16288cd (relay: update dashboard...)
       },
-      "id": 15,
+      "id": 88,
       "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
+        "afterRender": "",
+        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "language": "markdown"
         },
-        "showHeader": true
+        "editors": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "5.0.0",
       "targets": [
         {
           "body": "",
@@ -3278,6 +3102,16 @@
               "jsonPath": "$.[*].time_ago",
               "language": "jsonpath",
               "name": ""
+            },
+            {
+              "jsonPath": "$.[*].client_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].seconds_ago",
+              "language": "jsonpath",
+              "name": ""
             }
           ],
           "method": "GET",
@@ -3294,7 +3128,7 @@
       ],
       "title": "Last Client Update [whitewhale]",
       "transparent": true,
-      "type": "table"
+      "type": "marcusolsson-dynamictext-panel"
     },
     {
       "datasource": {
@@ -3321,9 +3155,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 16,
+        "h": 14,
         "w": 8,
         "x": 8,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3338,6 +3173,9 @@
 =======
         "y": 155
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 137
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 72,
       "options": {
@@ -3445,9 +3283,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 16,
+        "h": 14,
         "w": 8,
         "x": 16,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -3462,6 +3301,9 @@
 =======
         "y": 155
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 137
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 73,
       "options": {
@@ -3556,6 +3398,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "y": 173
         "y": 173
 =======
@@ -3567,6 +3410,9 @@
 =======
         "y": 172
 >>>>>>> 2d6e7fc (relay: update dashboard...)
+=======
+        "y": 151
+>>>>>>> 16288cd (relay: update dashboard...)
       },
       "id": 49,
       "options": {
@@ -3601,7 +3447,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 178
+        "y": 157
       },
       "id": 74,
       "panels": [],
@@ -3616,40 +3462,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "inspect": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "from": 1,
-                "result": {
-                  "color": "#fade2a3d",
-                  "index": 0
-                },
-                "to": 4
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 5,
-                "result": {
-                  "color": "#f2495c7a",
-                  "index": 1
-                },
-                "to": 9999
-              },
-              "type": "range"
-            }
-          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -3660,84 +3472,31 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "pending_packets"
-            },
-            "properties": [
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "basic",
-                  "type": "color-background"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "time_ago"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "pattern": "^.*(month(s)?|week(s)?|day(s)?) ago$",
-                      "result": {
-                        "color": "#f2495c80",
-                        "index": 0
-                      }
-                    },
-                    "type": "regex"
-                  },
-                  {
-                    "options": {
-                      "pattern": "^(1(7|8|9)|2[0-9]) hours ago$",
-                      "result": {
-                        "color": "#fade2a26",
-                        "index": 1
-                      }
-                    },
-                    "type": "regex"
-                  }
-                ]
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "basic",
-                  "type": "color-background"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 8,
         "x": 0,
-        "y": 179
+        "y": 158
       },
-      "id": 75,
+      "id": 89,
       "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
+        "afterRender": "",
+        "content": "<table>\n  <tr>\n    <th>channel_id</th>\n    <th>pending_packets</th>\n    <th>time</th>\n    <th>counter_chain_id</th>\n  </tr>\n  {{#each data}}\n  <tr\n{{#if (gt seconds_ago 86400)}} style=\"background-color: #CD6155\" \n{{else if (gt pending_packets 5)}} style=\"background-color: #CD6155\" \n{{else if (gt seconds_ago 57600)}} style=\"background-color: #D4AC0D\" \n{{else if (gt pending_packets 0)}} style=\"background-color: #D4AC0D\" \n{{else}}\n{{/if}}\n>\n    <td>{{chain_id}}/{{client_id}}/{{channel_id}}</td>\n    <td style=\"text-align: right\">{{pending_packets}}</td>\n    <td>{{time_ago}}</td>\n    <td>{{counter_chain_id}}</td>\n  </tr>\n  {{/each}}\n</table>",
+        "defaultContent": "The query didn't return any results.",
+        "editor": {
+          "format": "auto",
+          "language": "markdown"
         },
-        "showHeader": true
+        "editors": [],
+        "externalStyles": [],
+        "helpers": "",
+        "renderMode": "allRows",
+        "styles": "",
+        "wrap": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "5.0.0",
       "targets": [
         {
           "body": "",
@@ -3769,6 +3528,16 @@
               "jsonPath": "$.[*].time_ago",
               "language": "jsonpath",
               "name": ""
+            },
+            {
+              "jsonPath": "$.[*].client_id",
+              "language": "jsonpath",
+              "name": ""
+            },
+            {
+              "jsonPath": "$.[*].seconds_ago",
+              "language": "jsonpath",
+              "name": ""
             }
           ],
           "method": "GET",
@@ -3785,7 +3554,7 @@
       ],
       "title": "Last Client Update [whitewhale-testnet]",
       "transparent": true,
-      "type": "table"
+      "type": "marcusolsson-dynamictext-panel"
     },
     {
       "datasource": {
@@ -3815,7 +3584,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 179
+        "y": 158
       },
       "id": 76,
       "options": {
@@ -3926,7 +3695,7 @@
         "h": 8,
         "w": 7,
         "x": 16,
-        "y": 179
+        "y": 158
       },
       "id": 77,
       "options": {
@@ -4018,7 +3787,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 187
+        "y": 166
       },
       "id": 78,
       "options": {
