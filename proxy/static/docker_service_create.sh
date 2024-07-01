@@ -8,6 +8,8 @@ docker service create \
   --publish mode=host,target=80,published=80 \
   --publish mode=host,target=443,published=443 \
   --publish mode=host,target=9090,published=9090 \
+  --publish mode=host,target=1317,published=1317 \
+  --publish mode=host,target=26657,published=26657 \
   --network bignet \
   --network cosmosia \
   --network snapshot \
