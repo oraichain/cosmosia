@@ -26,7 +26,7 @@ export async function getServerSideProps({req, res}) {
         // public endpoints
         const public_rpc = `https://rpc-${chain}.${domain}/`;
         const public_api = `https://api-${chain}.${domain}/`;
-        const public_grpc = `grpc-${chain}-ia.cosmosia.${domain}:433`;
+        const public_grpc = `grpc-${chain}.cosmosia.${domain}:433`;
 
         // internal endpoints
         const internal_rpc = `https://rpc-${chain}-${secretTokens[counter]}-ie.internalendpoints.${domain}`;
@@ -41,7 +41,7 @@ export async function getServerSideProps({req, res}) {
           name: chain,
           public_rpc,
           public_api,
-          // public_grpc,
+          public_grpc,
           // internal_rpc,
           // internal_api,
           // internal_grpc,
@@ -89,15 +89,15 @@ const EndpointTable = (props) => {
             return (<Link href={text}><GlobalOutlined /></Link>);
           },
         },
-        // {
-        //   title: 'Public Grpc',
-        //   dataIndex: 'public_grpc',
-        //   key: 'public_grpc',
-        //   width: 150,
-        //   render: (text) => {
-        //     return (<Link href={text}><GlobalOutlined /></Link>);
-        //   },
-        // },
+        {
+          title: 'Public Grpc',
+          dataIndex: 'public_grpc',
+          key: 'public_grpc',
+          width: 150,
+          render: (text) => {
+            return (<Link href={text}><GlobalOutlined /></Link>);
+          },
+        },
         // {
         //   title: 'Internal RPC',
         //   dataIndex: 'internal_rpc',
