@@ -21,16 +21,6 @@ npm install --global yarn
 
 cd $HOME
 git clone --single-branch --branch dev https://github.com/oraichain/upgrade-watcher
-<<<<<<< HEAD
-=======
-git clone --single-branch --branch main https://github.com/oraichain/upgrade-watcher
-<<<<<<< HEAD
->>>>>>> 2a95595 (first add)
-=======
->>>>>>> f96366d (fix conflict)
->>>>>>> 055e1f6 (fix conflict)
-=======
->>>>>>> 504abb2 (change config)
 
 ########################################
 # backend

@@ -81,13 +81,6 @@ if [[ -z $build_script ]]; then
   else
     make install
   fi
-<<<<<<< HEAD
->>>>>>> 2a95595 (first add)
-=======
->>>>>>> f96366d (fix conflict)
->>>>>>> 055e1f6 (fix conflict)
-=======
->>>>>>> 504abb2 (change config)
 else
   source <(curl -Ls -o- "$build_script")
 fi
