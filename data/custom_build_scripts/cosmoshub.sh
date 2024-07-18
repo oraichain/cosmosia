@@ -12,20 +12,6 @@ else
   git checkout "$p_version"
 fi
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-# go mod edit -replace github.com/tendermint/tm-db=github.com/oraichain/tm-db@pebble
-# go mod tidy
-# go mod edit -replace github.com/cometbft/cometbft-db=github.com/oraichain/cometbft-db@pebble
-# go mod tidy
-# go mod edit -replace github.com/cosmos/cosmos-db=github.com/oraichain/cosmos-db@v1.0.0-139b9ba
-# go mod tidy
-# go mod edit -replace github.com/cockroachdb/pebble=github.com/cockroachdb/pebble@v1.0.0
-# go mod tidy
-# go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...
-
 go mod tidy
 make install
 echo "finish install go binary"

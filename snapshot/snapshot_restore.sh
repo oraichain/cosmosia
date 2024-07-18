@@ -36,8 +36,6 @@ if [[ -z $build_script ]]; then
   make install
   
   echo "install go binary"
-<<<<<<< HEAD
-=======
 
   if [[ $db_backend == "pebbledb" ]]; then
     if [ $( echo "${chain_name}" |grep -cE "^(cosmoshub|cheqd|terra|terra-archive|assetmantle)$" ) -ne 0 ]; then
