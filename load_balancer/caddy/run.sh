@@ -22,7 +22,7 @@ fi
 cd $HOME
 
 pacman -Syu --noconfirm
-pacman -S --noconfirm base-devel jq dnsutils python caddy screen wget cronie
+pacman -S --noconfirm base-devel jq dnsutils python caddy wget cronie
 
 # write env vars to bash file, so that cronjobs or other scripts could know
 cat <<EOT >> $HOME/env.sh
